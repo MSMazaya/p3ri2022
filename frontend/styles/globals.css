@@ -6,6 +6,24 @@
 @tailwind components;
 /* Stop purging. */
 
+/*color scheme */
+.text-neutral-10{
+  color:#C4C4C4;
+}
+.text-neutral-60{
+  color:#9E9E9E;
+}
+
+/*size*/
+.big-title{
+  font-size: 64px;
+  line-height: auto;
+}
+.headline{
+  font-size: 20px;
+  line-height: 28px;
+}
+
 /* Write your own custom component styles here */
 .btn-blue {
   @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
@@ -20,3 +38,8 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+/* Hero */
+#hero{
+  background: linear-gradient(208.89deg, #7D2BD0 -170.41%, #000000 92.37%);
+  height:100vh;
+}
