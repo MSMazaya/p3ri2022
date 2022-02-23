@@ -6,13 +6,6 @@ type User {
   name: String
   email: String
   password: PasswordState
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
-  postsCount(where: PostWhereInput! = {}): Int
 }
 
 type PasswordState {
@@ -31,7 +24,6 @@ input UserWhereInput {
   id: IDFilter
   name: StringFilter
   email: StringFilter
-  posts: PostManyRelationFilter
 }
 
 input IDFilter {
@@ -73,12 +65,6 @@ input NestedStringFilter {
   not: NestedStringFilter
 }
 
-input PostManyRelationFilter {
-  every: PostWhereInput
-  some: PostWhereInput
-  none: PostWhereInput
-}
-
 input UserOrderByInput {
   id: OrderDirection
   name: OrderDirection
@@ -94,14 +80,6 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
-  posts: PostRelateToManyForUpdateInput
-}
-
-input PostRelateToManyForUpdateInput {
-  disconnect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  create: [PostCreateInput!]
-  connect: [PostWhereUniqueInput!]
 }
 
 input UserUpdateArgs {
@@ -113,79 +91,184 @@ input UserCreateInput {
   name: String
   email: String
   password: String
-  posts: PostRelateToManyForCreateInput
 }
 
-input PostRelateToManyForCreateInput {
-  create: [PostCreateInput!]
-  connect: [PostWhereUniqueInput!]
-}
-
-type Post {
+type Merch {
   id: ID!
-  title: String
-  status: String
-  content: Post_content_Document
-  publishDate: DateTime
-  author: User
-  tags(
-    where: TagWhereInput! = {}
-    orderBy: [TagOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Tag!]
-  tagsCount(where: TagWhereInput! = {}): Int
+  name: String
+  productUrl: String
+  description: Merch_description_Document
+  photo: CloudinaryImage_File
 }
 
-type Post_content_Document {
+type Merch_description_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+type CloudinaryImage_File {
+  id: ID
+  filename: String
+  originalFilename: String
+  mimetype: String
+  encoding: String
+  publicUrl: String
+  publicUrlTransformed(transformation: CloudinaryImageFormat): String
+}
+
+"""
+Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
+All options are strings as they ultimately end up in a URL.
+"""
+input CloudinaryImageFormat {
+  """
+   Rewrites the filename to be this pretty string. Do not include `/` or `.`
+  """
+  prettyName: String
+  width: String
+  height: String
+  crop: String
+  aspect_ratio: String
+  gravity: String
+  zoom: String
+  x: String
+  y: String
+  format: String
+  fetch_format: String
+  quality: String
+  radius: String
+  angle: String
+  effect: String
+  opacity: String
+  border: String
+  background: String
+  overlay: String
+  underlay: String
+  default_image: String
+  delay: String
+  color: String
+  color_space: String
+  dpr: String
+  page: String
+  density: String
+  flags: String
+  transformation: String
+}
+
+input MerchWhereUniqueInput {
+  id: ID
+}
+
+input MerchWhereInput {
+  AND: [MerchWhereInput!]
+  OR: [MerchWhereInput!]
+  NOT: [MerchWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  productUrl: StringFilter
+}
+
+input MerchOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+  productUrl: OrderDirection
+}
+
+input MerchUpdateInput {
+  name: String
+  productUrl: String
+  description: JSON
+  photo: Upload
+}
+
+"""
+The `Upload` scalar type represents a file upload.
+"""
+scalar Upload
+
+input MerchUpdateArgs {
+  where: MerchWhereUniqueInput!
+  data: MerchUpdateInput!
+}
+
+input MerchCreateInput {
+  name: String
+  productUrl: String
+  description: JSON
+  photo: Upload
+}
+
+type Faq {
+  id: ID!
+  question: String
+  answer: String
+}
+
+input FaqWhereUniqueInput {
+  id: ID
+}
+
+input FaqWhereInput {
+  AND: [FaqWhereInput!]
+  OR: [FaqWhereInput!]
+  NOT: [FaqWhereInput!]
+  id: IDFilter
+  question: StringFilter
+  answer: StringFilter
+}
+
+input FaqOrderByInput {
+  id: OrderDirection
+  question: OrderDirection
+  answer: OrderDirection
+}
+
+input FaqUpdateInput {
+  question: String
+  answer: String
+}
+
+input FaqUpdateArgs {
+  where: FaqWhereUniqueInput!
+  data: FaqUpdateInput!
+}
+
+input FaqCreateInput {
+  question: String
+  answer: String
+}
+
+type Event {
+  id: ID!
+  thumbnail: CloudinaryImage_File
+  waktuAwalAcara: DateTime
+  waktuAkhirAcara: DateTime
+  tags: String
+  shortDescription: String
+  longDescription: Event_longDescription_Document
+  is_highlighted: Boolean
 }
 
 scalar DateTime
   @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
 
-input PostWhereUniqueInput {
+type Event_longDescription_Document {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input EventWhereUniqueInput {
   id: ID
 }
 
-input PostWhereInput {
-  AND: [PostWhereInput!]
-  OR: [PostWhereInput!]
-  NOT: [PostWhereInput!]
+input EventWhereInput {
+  AND: [EventWhereInput!]
+  OR: [EventWhereInput!]
+  NOT: [EventWhereInput!]
   id: IDFilter
-  title: StringFilter
-  status: StringNullableFilter
-  publishDate: DateTimeNullableFilter
-  author: UserWhereInput
-  tags: TagManyRelationFilter
-}
-
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
-}
-
-input NestedStringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
+  waktuAwalAcara: DateTimeNullableFilter
+  waktuAkhirAcara: DateTimeNullableFilter
+  tags: StringFilter
+  shortDescription: StringFilter
+  is_highlighted: BooleanFilter
 }
 
 input DateTimeNullableFilter {
@@ -199,108 +282,43 @@ input DateTimeNullableFilter {
   not: DateTimeNullableFilter
 }
 
-input TagManyRelationFilter {
-  every: TagWhereInput
-  some: TagWhereInput
-  none: TagWhereInput
+input BooleanFilter {
+  equals: Boolean
+  not: BooleanFilter
 }
 
-input PostOrderByInput {
+input EventOrderByInput {
   id: OrderDirection
-  title: OrderDirection
-  status: OrderDirection
-  publishDate: OrderDirection
+  waktuAwalAcara: OrderDirection
+  waktuAkhirAcara: OrderDirection
+  tags: OrderDirection
+  shortDescription: OrderDirection
+  is_highlighted: OrderDirection
 }
 
-input PostUpdateInput {
-  title: String
-  status: String
-  content: JSON
-  publishDate: DateTime
-  author: UserRelateToOneForUpdateInput
-  tags: TagRelateToManyForUpdateInput
+input EventUpdateInput {
+  thumbnail: Upload
+  waktuAwalAcara: DateTime
+  waktuAkhirAcara: DateTime
+  tags: String
+  shortDescription: String
+  longDescription: JSON
+  is_highlighted: Boolean
 }
 
-input UserRelateToOneForUpdateInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-  disconnect: Boolean
+input EventUpdateArgs {
+  where: EventWhereUniqueInput!
+  data: EventUpdateInput!
 }
 
-input TagRelateToManyForUpdateInput {
-  disconnect: [TagWhereUniqueInput!]
-  set: [TagWhereUniqueInput!]
-  create: [TagCreateInput!]
-  connect: [TagWhereUniqueInput!]
-}
-
-input PostUpdateArgs {
-  where: PostWhereUniqueInput!
-  data: PostUpdateInput!
-}
-
-input PostCreateInput {
-  title: String
-  status: String
-  content: JSON
-  publishDate: DateTime
-  author: UserRelateToOneForCreateInput
-  tags: TagRelateToManyForCreateInput
-}
-
-input UserRelateToOneForCreateInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-}
-
-input TagRelateToManyForCreateInput {
-  create: [TagCreateInput!]
-  connect: [TagWhereUniqueInput!]
-}
-
-type Tag {
-  id: ID!
-  name: String
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
-  postsCount(where: PostWhereInput! = {}): Int
-}
-
-input TagWhereUniqueInput {
-  id: ID
-}
-
-input TagWhereInput {
-  AND: [TagWhereInput!]
-  OR: [TagWhereInput!]
-  NOT: [TagWhereInput!]
-  id: IDFilter
-  name: StringFilter
-  posts: PostManyRelationFilter
-}
-
-input TagOrderByInput {
-  id: OrderDirection
-  name: OrderDirection
-}
-
-input TagUpdateInput {
-  name: String
-  posts: PostRelateToManyForUpdateInput
-}
-
-input TagUpdateArgs {
-  where: TagWhereUniqueInput!
-  data: TagUpdateInput!
-}
-
-input TagCreateInput {
-  name: String
-  posts: PostRelateToManyForCreateInput
+input EventCreateInput {
+  thumbnail: Upload
+  waktuAwalAcara: DateTime
+  waktuAkhirAcara: DateTime
+  tags: String
+  shortDescription: String
+  longDescription: JSON
+  is_highlighted: Boolean
 }
 
 """
@@ -318,18 +336,24 @@ type Mutation {
   updateUsers(data: [UserUpdateArgs!]!): [User]
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUsers(where: [UserWhereUniqueInput!]!): [User]
-  createPost(data: PostCreateInput!): Post
-  createPosts(data: [PostCreateInput!]!): [Post]
-  updatePost(where: PostWhereUniqueInput!, data: PostUpdateInput!): Post
-  updatePosts(data: [PostUpdateArgs!]!): [Post]
-  deletePost(where: PostWhereUniqueInput!): Post
-  deletePosts(where: [PostWhereUniqueInput!]!): [Post]
-  createTag(data: TagCreateInput!): Tag
-  createTags(data: [TagCreateInput!]!): [Tag]
-  updateTag(where: TagWhereUniqueInput!, data: TagUpdateInput!): Tag
-  updateTags(data: [TagUpdateArgs!]!): [Tag]
-  deleteTag(where: TagWhereUniqueInput!): Tag
-  deleteTags(where: [TagWhereUniqueInput!]!): [Tag]
+  createMerch(data: MerchCreateInput!): Merch
+  createMerches(data: [MerchCreateInput!]!): [Merch]
+  updateMerch(where: MerchWhereUniqueInput!, data: MerchUpdateInput!): Merch
+  updateMerches(data: [MerchUpdateArgs!]!): [Merch]
+  deleteMerch(where: MerchWhereUniqueInput!): Merch
+  deleteMerches(where: [MerchWhereUniqueInput!]!): [Merch]
+  createFaq(data: FaqCreateInput!): Faq
+  createFaqs(data: [FaqCreateInput!]!): [Faq]
+  updateFaq(where: FaqWhereUniqueInput!, data: FaqUpdateInput!): Faq
+  updateFaqs(data: [FaqUpdateArgs!]!): [Faq]
+  deleteFaq(where: FaqWhereUniqueInput!): Faq
+  deleteFaqs(where: [FaqWhereUniqueInput!]!): [Faq]
+  createEvent(data: EventCreateInput!): Event
+  createEvents(data: [EventCreateInput!]!): [Event]
+  updateEvent(where: EventWhereUniqueInput!, data: EventUpdateInput!): Event
+  updateEvents(data: [EventUpdateArgs!]!): [Event]
+  deleteEvent(where: EventWhereUniqueInput!): Event
+  deleteEvents(where: [EventWhereUniqueInput!]!): [Event]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -368,22 +392,30 @@ type Query {
   ): [User!]
   user(where: UserWhereUniqueInput!): User
   usersCount(where: UserWhereInput! = {}): Int
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
+  merches(
+    where: MerchWhereInput! = {}
+    orderBy: [MerchOrderByInput!]! = []
     take: Int
     skip: Int! = 0
-  ): [Post!]
-  post(where: PostWhereUniqueInput!): Post
-  postsCount(where: PostWhereInput! = {}): Int
-  tags(
-    where: TagWhereInput! = {}
-    orderBy: [TagOrderByInput!]! = []
+  ): [Merch!]
+  merch(where: MerchWhereUniqueInput!): Merch
+  merchesCount(where: MerchWhereInput! = {}): Int
+  faqs(
+    where: FaqWhereInput! = {}
+    orderBy: [FaqOrderByInput!]! = []
     take: Int
     skip: Int! = 0
-  ): [Tag!]
-  tag(where: TagWhereUniqueInput!): Tag
-  tagsCount(where: TagWhereInput! = {}): Int
+  ): [Faq!]
+  faq(where: FaqWhereUniqueInput!): Faq
+  faqsCount(where: FaqWhereInput! = {}): Int
+  events(
+    where: EventWhereInput! = {}
+    orderBy: [EventOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Event!]
+  event(where: EventWhereUniqueInput!): Event
+  eventsCount(where: EventWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }
