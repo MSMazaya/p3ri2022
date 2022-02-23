@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Navbar from 'components/shared/Navbar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -22,7 +23,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeError', handleComplete)
     }
   })
-  return loading ? <h1>Loading</h1> : <Component {...pageProps} />
+  return loading ? <h1>Loading</h1> : <>
+    <Navbar />
+    <Component {...pageProps} />
+  </>
 }
 
 export default MyApp

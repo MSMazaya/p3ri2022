@@ -12,9 +12,7 @@ const Home: NextPage = () => {
 			</Head>
 
 			<main className="p-5 bg-red">
-				<h1 className="text-center">
-					Welcome to
-				</h1>
+				<div className="bg-[linear-gradient(208.89deg,_#7D2BD0_-170.41%,_#000000_92.37%)] h-screen w-screen" />
 				<Link href="/">home gan</Link>
 			</main>
 		</div>

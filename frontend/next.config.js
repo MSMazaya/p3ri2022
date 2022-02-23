@@ -7,6 +7,9 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true
   },
+  images: {
+    domains: ['res.cloudinary.com']
+  },
   async rewrites() {
     return [{ "source": "/api/(.*)", "destination": "/api" }]
   }
