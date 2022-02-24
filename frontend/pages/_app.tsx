@@ -2,7 +2,8 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Navbar from 'components/shared/Navbar';
+import Layout from 'components/shared/Layout';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -23,9 +24,21 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeError', handleComplete)
     }
   })
-  return loading ? <h1>Loading</h1> : <>
-    <Navbar />
-    <Component {...pageProps} />
+  return <>
+    <Head>
+      <title>P3RI Salman ITB</title>
+      <meta name="description" content="" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    {
+      loading
+        ?
+        <h1>Loading</h1>
+        :
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+    }
   </>
 }
 

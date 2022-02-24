@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Image from 'next/image';
 
 const toNavigation = (name, href, current) => ({ name, href, current });
@@ -16,9 +16,9 @@ function classNames(...classes) {
 	return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Navbar() {
 	return (
-		<Disclosure as="nav" className="bg-transparent absolute top-0 z-10 left-0 w-screen">
+		<Disclosure as="nav" className="bg-main top-0 z-10 left-0 w-screen sticky">
 			{({ open }) => (
 				<>
 					<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

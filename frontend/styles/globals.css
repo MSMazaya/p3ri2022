@@ -1,45 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap");
+
 @tailwind base;
 
-/* Write your own custom base styles here */
+html {
+  font-family: "Mulish", sans-serif;
+}
 
-/* Start purging... */
+.bold {
+  font-weight: bold;
+}
+
+.big-title {
+  font-size: 4.5rem;
+  line-height: 5.625rem;
+}
+
+.mid-title {
+  font-size: 3rem;
+  line-height: 3.75rem;
+}
+
+.title-1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+
+.title-2 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+
+.title-3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.headline {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.sub-headline {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.body {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.caption {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 @tailwind components;
-/* Stop purging. */
 
-/*color scheme */
-.text-neutral-10{
-  color:#C4C4C4;
-}
-.text-neutral-60{
-  color:#9E9E9E;
+.bg-main {
+  background: linear-gradient(208.89deg, #7d2bd0 -170.41%, #000000 92.37%);
 }
 
-/*size*/
-.big-title{
-  font-size: 64px;
-  line-height: auto;
-}
-.headline{
-  font-size: 20px;
-  line-height: 28px;
+.btn-primary {
+  @apply transition rounded select-none bg-primary-main px-8 py-2 text-primary-surface cursor-pointer bold focus:bg-primary-focus hover:bg-primary-hover active:bg-primary-pressed;
 }
 
-/* Write your own custom component styles here */
-.btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+.btn-info {
+  @apply transition rounded select-none bg-info-main px-8 py-2 text-info-surface cursor-pointer bold hover:bg-info-hover active:bg-info-pressed;
 }
 
-.btn-green {
-  @apply bg-green-500 text-white font-bold py-2 px-4 rounded;
+.btn-danger {
+  @apply transition rounded select-none bg-danger-main px-8 py-2 text-danger-surface cursor-pointer bold hover:bg-danger-hover active:bg-danger-pressed;
 }
 
-/* Start purging... */
+.btn-warning {
+  @apply transition rounded select-none bg-warning-main px-8 py-2 text-warning-surface cursor-pointer bold hover:bg-warning-hover active:bg-warning-pressed;
+}
+
+.btn-success {
+  @apply transition rounded select-none bg-success-main px-8 py-2 text-success-surface cursor-pointer bold hover:bg-success-hover active:bg-success-pressed;
+}
+
 @tailwind utilities;
-/* Stop purging. */
-
-/* Your own custom utilities */
-/* Hero */
-#hero{
-  background: linear-gradient(208.89deg, #7D2BD0 -170.41%, #000000 92.37%);
-  height:100vh;
-}
