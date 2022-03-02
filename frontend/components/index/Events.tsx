@@ -17,9 +17,14 @@ const Events = () => {
 					<BiArrowBack />
 				</div>
 			</div>
-			<div className="w-full overflow-x-scroll flex gap-3">
+			<div className="w-fit overflow-x-hidden flex gap-3 relative pb-4">
 				<EventCard />
 				<EventCard />
+				<div className="absolute left-0 bottom-0 flex gap-3">
+					<div className="bg-neutral-600 rounded-xl p-2"></div>
+					<div className="bg-neutral-600 opacity-50 rounded-xl p-2"></div>
+					<div className="bg-neutral-600 opacity-50 rounded-xl p-2"></div>
+				</div>
 			</div>
 		</div>
 	)
