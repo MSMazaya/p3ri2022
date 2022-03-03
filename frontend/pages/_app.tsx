@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from 'components/shared/Layout';
 import Head from 'next/head';
+import "@fullcalendar/common/main.css";
+import "@fullcalendar/daygrid/main.css";
+import "@fullcalendar/timegrid/main.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

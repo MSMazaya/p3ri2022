@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const withTM = require("next-transpile-modules")([
+  "@fullcalendar/common",
+  "@babel/preset-react",
+  "@fullcalendar/common",
+  "@fullcalendar/daygrid",
+  "@fullcalendar/interaction",
+  "@fullcalendar/react",
+  "@fullcalendar/timegrid",
+]);
+
+module.exports = withTM({
   reactStrictMode: true,
   typescript: {
     ignoreBuildErrors: true,
@@ -13,4 +23,4 @@ module.exports = {
   async rewrites() {
     return [{ "source": "/api/(.*)", "destination": "/api" }]
   }
-}
+})
