@@ -248,7 +248,14 @@ type Event {
   thumbnail: CloudinaryImage_File
   waktuAwalAcara: DateTime
   waktuAkhirAcara: DateTime
-  tags: String
+  tags(
+    where: TagWhereInput! = {}
+    orderBy: [TagOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Tag!]
+  tagsCount(where: TagWhereInput! = {}): Int
+  jenisKegiatan: EventJenisKegiatanType
   shortDescription: String
   longDescription: Event_longDescription_Document
   is_highlighted: Boolean
@@ -256,6 +263,11 @@ type Event {
 
 scalar DateTime
   @specifiedBy(url: "https://datatracker.ietf.org/doc/html/rfc3339#section-5.6")
+
+enum EventJenisKegiatanType {
+  offline
+  online
+}
 
 type Event_longDescription_Document {
   document(hydrateRelationships: Boolean! = false): JSON!
@@ -272,7 +284,8 @@ input EventWhereInput {
   id: IDFilter
   waktuAwalAcara: DateTimeNullableFilter
   waktuAkhirAcara: DateTimeNullableFilter
-  tags: StringFilter
+  tags: TagManyRelationFilter
+  jenisKegiatan: EventJenisKegiatanTypeNullableFilter
   shortDescription: StringFilter
   is_highlighted: BooleanFilter
 }
@@ -288,6 +301,19 @@ input DateTimeNullableFilter {
   not: DateTimeNullableFilter
 }
 
+input TagManyRelationFilter {
+  every: TagWhereInput
+  some: TagWhereInput
+  none: TagWhereInput
+}
+
+input EventJenisKegiatanTypeNullableFilter {
+  equals: EventJenisKegiatanType
+  in: [EventJenisKegiatanType!]
+  notIn: [EventJenisKegiatanType!]
+  not: EventJenisKegiatanTypeNullableFilter
+}
+
 input BooleanFilter {
   equals: Boolean
   not: BooleanFilter
@@ -297,7 +323,7 @@ input EventOrderByInput {
   id: OrderDirection
   waktuAwalAcara: OrderDirection
   waktuAkhirAcara: OrderDirection
-  tags: OrderDirection
+  jenisKegiatan: OrderDirection
   shortDescription: OrderDirection
   is_highlighted: OrderDirection
 }
@@ -306,10 +332,18 @@ input EventUpdateInput {
   thumbnail: Upload
   waktuAwalAcara: DateTime
   waktuAkhirAcara: DateTime
-  tags: String
+  tags: TagRelateToManyForUpdateInput
+  jenisKegiatan: EventJenisKegiatanType
   shortDescription: String
   longDescription: JSON
   is_highlighted: Boolean
+}
+
+input TagRelateToManyForUpdateInput {
+  disconnect: [TagWhereUniqueInput!]
+  set: [TagWhereUniqueInput!]
+  create: [TagCreateInput!]
+  connect: [TagWhereUniqueInput!]
 }
 
 input EventUpdateArgs {
@@ -321,10 +355,79 @@ input EventCreateInput {
   thumbnail: Upload
   waktuAwalAcara: DateTime
   waktuAkhirAcara: DateTime
-  tags: String
+  tags: TagRelateToManyForCreateInput
+  jenisKegiatan: EventJenisKegiatanType
   shortDescription: String
   longDescription: JSON
   is_highlighted: Boolean
+}
+
+input TagRelateToManyForCreateInput {
+  create: [TagCreateInput!]
+  connect: [TagWhereUniqueInput!]
+}
+
+type Tag {
+  id: ID!
+  name: String
+  events(
+    where: EventWhereInput! = {}
+    orderBy: [EventOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Event!]
+  eventsCount(where: EventWhereInput! = {}): Int
+}
+
+input TagWhereUniqueInput {
+  id: ID
+}
+
+input TagWhereInput {
+  AND: [TagWhereInput!]
+  OR: [TagWhereInput!]
+  NOT: [TagWhereInput!]
+  id: IDFilter
+  name: StringFilter
+  events: EventManyRelationFilter
+}
+
+input EventManyRelationFilter {
+  every: EventWhereInput
+  some: EventWhereInput
+  none: EventWhereInput
+}
+
+input TagOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+}
+
+input TagUpdateInput {
+  name: String
+  events: EventRelateToManyForUpdateInput
+}
+
+input EventRelateToManyForUpdateInput {
+  disconnect: [EventWhereUniqueInput!]
+  set: [EventWhereUniqueInput!]
+  create: [EventCreateInput!]
+  connect: [EventWhereUniqueInput!]
+}
+
+input TagUpdateArgs {
+  where: TagWhereUniqueInput!
+  data: TagUpdateInput!
+}
+
+input TagCreateInput {
+  name: String
+  events: EventRelateToManyForCreateInput
+}
+
+input EventRelateToManyForCreateInput {
+  create: [EventCreateInput!]
+  connect: [EventWhereUniqueInput!]
 }
 
 """
@@ -360,6 +463,12 @@ type Mutation {
   updateEvents(data: [EventUpdateArgs!]!): [Event]
   deleteEvent(where: EventWhereUniqueInput!): Event
   deleteEvents(where: [EventWhereUniqueInput!]!): [Event]
+  createTag(data: TagCreateInput!): Tag
+  createTags(data: [TagCreateInput!]!): [Tag]
+  updateTag(where: TagWhereUniqueInput!, data: TagUpdateInput!): Tag
+  updateTags(data: [TagUpdateArgs!]!): [Tag]
+  deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteTags(where: [TagWhereUniqueInput!]!): [Tag]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -422,6 +531,14 @@ type Query {
   ): [Event!]
   event(where: EventWhereUniqueInput!): Event
   eventsCount(where: EventWhereInput! = {}): Int
+  tags(
+    where: TagWhereInput! = {}
+    orderBy: [TagOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Tag!]
+  tag(where: TagWhereUniqueInput!): Tag
+  tagsCount(where: TagWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }

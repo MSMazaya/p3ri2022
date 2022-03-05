@@ -77,7 +77,25 @@ export const lists: Lists = {
       }),
       waktuAwalAcara: timestamp(),
       waktuAkhirAcara: timestamp(),
-      tags: text(),
+      tags: relationship({
+        ref: "Tag.events",
+        ui: {
+          displayMode: "cards",
+          cardFields: ["name"],
+          inlineEdit: { fields: ["name"] },
+          linkToItem: true,
+          inlineConnect: true,
+          inlineCreate: { fields: ["name"] },
+        },
+        many: true,
+      }),
+      jenisKegiatan: select({
+        type: "enum",
+        options: [
+          { value: "offline", label: "Offline" },
+          { value: "online", label: "online" },
+        ],
+      }),
       shortDescription: text(),
       longDescription: document({
         formatting: true,
@@ -92,6 +110,16 @@ export const lists: Lists = {
         dividers: true,
       }),
       is_highlighted: checkbox(),
+    },
+  }),
+
+  Tag: list({
+    ui: {
+      isHidden: true,
+    },
+    fields: {
+      name: text(),
+      events: relationship({ ref: "Event.tags", many: true }),
     },
   }),
 };

@@ -33,12 +33,24 @@ model Faq {
 }
 
 model Event {
-  id               String    @id @default(uuid()) @postgresql.Uuid
+  id               String                  @id @default(uuid()) @postgresql.Uuid
   thumbnail        Json?
   waktuAwalAcara   DateTime?
   waktuAkhirAcara  DateTime?
-  tags             String    @default("")
-  shortDescription String    @default("")
-  longDescription  Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  is_highlighted   Boolean   @default(false)
+  tags             Tag[]                   @relation("Event_tags")
+  jenisKegiatan    EventJenisKegiatanType?
+  shortDescription String                  @default("")
+  longDescription  Json                    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  is_highlighted   Boolean                 @default(false)
+}
+
+model Tag {
+  id     String  @id @default(uuid()) @postgresql.Uuid
+  name   String  @default("")
+  events Event[] @relation("Event_tags")
+}
+
+enum EventJenisKegiatanType {
+  offline
+  online
 }
