@@ -1,6 +1,6 @@
 import React from 'react'
 import Lottie from "lottie-react";
-import Ketupat from 'public/ketupat.json'
+import Ketupat from 'assets/ketupat.json'
 import { motion } from 'framer-motion'
 
 const variants = {
