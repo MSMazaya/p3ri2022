@@ -3,7 +3,7 @@ import { BiChevronDown } from 'react-icons/bi';
 
 const Faq = () => {
 	return (
-		<div className="p-5">
+		<div className="p-5 mt-10">
 			<div className="mid-title bold text-neutral-1000 text-center p-5">F.A.Q</div>
 			<div className="border-[1px] border-neutral-400 rounded-xl overflow-hidden">
 				<Accordion />

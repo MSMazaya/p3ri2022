@@ -4,7 +4,7 @@ import React from 'react'
 
 const LiveStream = () => {
 	return (
-		<div className="m-5 grid grid-cols-4">
+		<div className="m-5 grid grid-cols-4 mt-32">
 			<VideoHighlighted />
 			<OtherVideos />
 		</div>

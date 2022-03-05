@@ -7,6 +7,8 @@ import Head from 'next/head';
 import "@fullcalendar/common/main.css";
 import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
+import Loading from 'components/shared/Loading';
+import { AnimatePresence } from 'framer-motion'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -26,22 +28,29 @@ function MyApp({ Component, pageProps }: AppProps) {
       router.events.off('routeChangeComplete', handleComplete)
       router.events.off('routeChangeError', handleComplete)
     }
+
   })
+
   return <>
     <Head>
       <title>P3RI Salman ITB</title>
       <meta name="description" content="" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    {
-      loading
-        ?
-        <h1>Loading</h1>
-        :
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-    }
+    <AnimatePresence
+      exitBeforeEnter
+      onExitComplete={() => window.scrollTo(0, 0)}
+    >
+      {
+        loading
+          ?
+          <Loading key="loading" />
+          :
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+      }
+    </AnimatePresence>
   </>
 }
 

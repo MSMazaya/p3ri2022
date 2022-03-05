@@ -2,14 +2,18 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import Image from 'next/image';
+import { useScroll } from 'ahooks';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-const toNavigation = (name, href, current) => ({ name, href, current });
+const toNavigation = (name, href) => ({ name, href });
 
 const navigation = [
-	toNavigation("Dashboard", "#", true),
-	toNavigation("Team", "#", false),
-	toNavigation("Projects", "#", false),
-	toNavigation("Calendar", "#", false),
+	toNavigation("Live Stream", "/live-stream"),
+	toNavigation("Jadwal", "/jadwal"),
+	toNavigation("Infak", "/infak"),
+	toNavigation("Merchandise", "/merch"),
+	toNavigation("Sponsor", "/sponsor"),
 ]
 
 function classNames(...classes) {
@@ -17,11 +21,20 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+	const scroll = useScroll();
+	const router = useRouter();
+
 	return (
-		<Disclosure as="nav" className="bg-main top-0 z-10 left-0 w-screen sticky">
+		<Disclosure
+			as="nav"
+			className={
+				`${(scroll?.top > 64 || !(router.pathname === '/')) ? "bg-main" : "bg-transparent"} 
+				top-0 z-10 left-0 w-screen fixed
+			`}
+		>
 			{({ open }) => (
 				<>
-					<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+					<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 lg:py-2">
 						<div className="relative flex items-center justify-between h-16">
 							<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 								{/* Mobile menu button*/}
@@ -36,13 +49,21 @@ export default function Navbar() {
 							</div>
 							<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
 								<div className="flex-shrink-0 flex items-center">
-									<Image
-										height={40}
-										width={280}
-										className="block lg:hidden h-8 w-auto"
-										src="/logo.png"
-										alt="Workflow"
-									/>
+									<Link
+										href="/"
+										passHref
+									>
+										<a>
+											<Image
+												height={40}
+												width={280}
+												className="block lg:hidden h-8 w-auto"
+												src="/logo.png"
+												alt="Workflow"
+												objectFit="contain"
+											/>
+										</a>
+									</Link>
 								</div>
 							</div>
 							<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -50,17 +71,26 @@ export default function Navbar() {
 								<div className="hidden sm:block sm:ml-6">
 									<div className="flex space-x-4">
 										{navigation.map((item) => (
-											<a
+											<Link
 												key={item.name}
 												href={item.href}
-												className={classNames(
-													item.current ? 'bg-transparent text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-													'px-3 py-2 rounded-md text-sm font-medium'
-												)}
-												aria-current={item.current ? 'page' : undefined}
+												passHref
 											>
-												{item.name}
-											</a>
+												<a
+													className={classNames(
+														(router.pathname === item.href) ? 'bg-transparent' : 'hover:bg-gray-700 hover:text-white',
+														'px-3 py-2 rounded-md text-sm font-medium text-neutral-100'
+													)}
+													aria-current={(router.pathname === item.href) ? 'page' : undefined}
+												>
+													<div className={
+														classNames(router.pathname === item.href ?
+															"border-b-2 border-white" : undefined,
+															"bold"
+														)
+													}>{item.name}</div>
+												</a>
+											</Link>
 										))}
 									</div>
 								</div>
@@ -127,18 +157,22 @@ export default function Navbar() {
 					<Disclosure.Panel className="sm:hidden">
 						<div className="px-2 pt-2 pb-3 space-y-1">
 							{navigation.map((item) => (
-								<Disclosure.Button
+								<Link
 									key={item.name}
-									as="a"
 									href={item.href}
-									className={classNames(
-										item.current ? 'bg-transparent text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-										'block px-3 py-2 rounded-md text-base font-medium'
-									)}
-									aria-current={item.current ? 'page' : undefined}
+									passHref
 								>
-									{item.name}
-								</Disclosure.Button>
+									<Disclosure.Button
+										as="a"
+										className={classNames(
+											(router.pathname === item.href) ? 'bg-transparent text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+											'block px-3 py-2 rounded-md text-base font-medium'
+										)}
+										aria-current={(router.pathname === item.href) ? 'page' : undefined}
+									>
+										{item.name}
+									</Disclosure.Button>
+								</Link>
 							))}
 						</div>
 					</Disclosure.Panel>

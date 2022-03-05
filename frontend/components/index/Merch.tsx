@@ -3,7 +3,7 @@ import { BiArrowBack } from 'react-icons/bi'
 
 const Merch = () => {
 	return (
-		<div className="p-10 justify-around flex">
+		<div className="p-10 justify-around flex mt-10">
 			<div className="w-fit flex m-5">
 				<MerchCard />
 				<MerchCard />

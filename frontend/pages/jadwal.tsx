@@ -11,7 +11,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 const Jadwal = () => {
 
 	return (
-		<div className="m-5">
+		<div className="m-5 mt-32">
 			<FullCalendar
 				initialView='dayGridMonth'
 				plugins={[timeGridPlugin, interactionPlugin, dayGridPlugin]}

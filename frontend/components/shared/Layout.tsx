@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 
 const Layout = ({ children }) => {
 	return (
-		<div className="bg-primary-surface relative w-screen overflow-x-hidden">
+		<div className="bg-primary-surface overflow-x-hidden smooth-scroll" >
 			<Navbar />
 			{children}
 			<Footer />

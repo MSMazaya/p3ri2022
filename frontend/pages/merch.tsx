@@ -5,11 +5,11 @@ import React from 'react'
 
 const Merch = () => {
 	return (
-		<React.Fragment>
+		<div className="mt-32">
 			<Headline />
 			<Products />
 			<Quote />
-		</React.Fragment>
+		</div>
 	)
 }
 
