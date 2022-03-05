@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { BiArrowBack } from 'react-icons/bi'
 
@@ -13,10 +14,15 @@ const Merch = () => {
 				<div className="title-3 neutral-800 medium">
 					Ikut sukseskan keberjalanan P3RI dengan membeli merchandise dan produk kami. Setiap merchandise dibuat dengan semangat untuk memberikan yang terbaik bagi jamaah.
 				</div>
-				<div className="text-primary-main bold title-3 flex gap-3 group items-center cursor-pointer">
-					Catalog Product
-					<BiArrowBack className="transform rotate-180 group-hover:animate-bounce-x" />
-				</div>
+				<Link
+					href="/merch"
+					passHref
+				>
+					<div className="text-primary-main bold title-3 flex gap-3 group items-center cursor-pointer">
+						Catalog Product
+						<BiArrowBack className="transform rotate-180 group-hover:animate-bounce-x" />
+					</div>
+				</Link>
 				<div></div>
 				<div></div>
 				<div></div>

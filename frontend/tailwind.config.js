@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       animation: {
         'bounce-x': 'bounceX 1s infinite',
+        'bounce-y-rotate-min-90': 'bounceYRotateMin90 1s infinite',
       },
       colors: {
         'accent-1': '#333',

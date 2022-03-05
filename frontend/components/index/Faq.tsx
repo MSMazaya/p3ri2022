@@ -20,8 +20,6 @@ const Faq = (props: Props) => {
 	)
 }
 
-
-
 type AccordionProps = {
 	question: string;
 	answer: string;

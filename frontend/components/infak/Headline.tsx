@@ -18,10 +18,10 @@ const Headline = () => {
 				<div className="title-3 medium text-neutral-800 mb-10">
 					Infak yang anda berikan berdampak besar bagi penerimanya. Mari ikut tebarkan semangat bermanfaat bersama P3RI.
 				</div>
-				<div className="text-primary-main bold title-3 flex gap-2 items-center">
-					Jadwal Lengkap
-					<BiArrowBack />
-				</div>
+				<a className="text-primary-main bold title-3 flex gap-2 items-center group" href="#qr">
+					Scan QR
+					<BiArrowBack className="transform rotate-[-90deg] group-hover:animate-bounce-y-rotate-min-90" />
+				</a>
 			</div>
 		</div>
 	)

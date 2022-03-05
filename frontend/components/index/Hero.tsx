@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const Hero = () => {
@@ -12,12 +13,22 @@ const Hero = () => {
 					Maksimalkan amal ibadah anda dengan berbagai kegiatan dan materi yang bermanfaat bersama P3RI Salman ITB.
 				</div>
 				<div className="flex gap-5">
-					<div className="btn-primary">
-						Lihat Jadwal
-					</div>
-					<div className="px-8 py-2 bg-transparent text-white rounded-md border-[1px] border-white cursor-pointer">
-						Infak & Zakat
-					</div>
+					<Link
+						href="/jadwal"
+						passHref
+					>
+						<div className="btn-primary">
+							Lihat Jadwal
+						</div>
+					</Link>
+					<Link
+						href="/jadwal"
+						passHref
+					>
+						<div className="px-8 py-2 bg-transparent text-white rounded-md border-[1px] border-white cursor-pointer">
+							Infak & Zakat
+						</div>
+					</Link>
 				</div>
 			</div>
 			<div className="w-full h-full p-12">

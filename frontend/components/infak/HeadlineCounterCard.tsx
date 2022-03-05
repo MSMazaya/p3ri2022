@@ -13,7 +13,10 @@ const HeadlineCounterCard = () => {
 			<div className="overlay-counter-card-bg absolute z-10 h-full w-full left-0 top-0" />
 			<div className="absolute bottom-2 left-2 z-20 text-neutral-100 ">
 				<div className="body-1 bold">Sembako dan Bantuan</div>
-				<div className="mid-title bold">1.231 paket</div>
+				<div className="flex gap-2 items-end">
+					<div className="mid-title bold">1.231</div>
+					<div className="[line-height:2.5rem;]">Paket</div>
+				</div>
 			</div>
 		</div>
 	)

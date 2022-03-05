@@ -4,6 +4,7 @@
 
 html {
   font-family: "Mulish", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .bold {
@@ -77,6 +78,18 @@ html {
   }
   50% {
     transform: translateX(0) rotate(180deg);
+    animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes bounceYRotateMin90 {
+  0%,
+  100% {
+    transform: translateY(-25%) rotate(-90deg);
+    animationtimingfunction: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0) rotate(-90deg);
     animationtimingfunction: cubic-bezier(0, 0, 0.2, 1);
   }
 }

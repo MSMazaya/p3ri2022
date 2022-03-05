@@ -15,7 +15,7 @@ app.get("/api/videos", async (_, res) => {
 
   try {
     const { data: videos } = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=UC0q3ZRelHNhWRhwe2thGzWQ&part=snippet,id&order=date&maxResults=20`
+      `https://www.googleapis.com/youtube/v3/search?key=${key}&channelId=UC0q3ZRelHNhWRhwe2thGzWQ&part=snippet,id&order=date&maxResults=8`
     );
 
     res.json(videos);
