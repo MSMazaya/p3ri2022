@@ -6,7 +6,7 @@ import { BsLine } from "react-icons/bs";
 
 const Footer = () => {
 	return (
-		<div className="bg-primary-pressed p-10">
+		<div className="bg-primary-pressed p-10 mt-32">
 			<div className="flex justify-between">
 				<div className="flex gap-2">
 					<div className="p-5">

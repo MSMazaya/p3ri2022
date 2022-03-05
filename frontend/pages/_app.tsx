@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {
         loading
           ?
-          <Loading key="loading" />
+          <Loading key={router.pathname} />
           :
           <Layout>
             <Component {...pageProps} />

@@ -13,9 +13,9 @@ const Merch = () => {
 				<div className="title-3 neutral-800 medium">
 					Ikut sukseskan keberjalanan P3RI dengan membeli merchandise dan produk kami. Setiap merchandise dibuat dengan semangat untuk memberikan yang terbaik bagi jamaah.
 				</div>
-				<div className="text-primary-main bold title-3 flex gap-3">
+				<div className="text-primary-main bold title-3 flex gap-3 group items-center cursor-pointer">
 					Catalog Product
-					<BiArrowBack />
+					<BiArrowBack className="transform rotate-180 group-hover:animate-bounce-x" />
 				</div>
 				<div></div>
 				<div></div>

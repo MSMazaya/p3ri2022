@@ -1,34 +1,57 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react'
 import { BiChevronDown } from 'react-icons/bi';
+import { Faq } from 'types/faq';
 
-const Faq = () => {
+type Props = {
+	faqs: Faq[];
+}
+
+const Faq = (props: Props) => {
 	return (
 		<div className="p-5 mt-10">
 			<div className="mid-title bold text-neutral-1000 text-center p-5">F.A.Q</div>
 			<div className="border-[1px] border-neutral-400 rounded-xl overflow-hidden">
-				<Accordion />
-				<Accordion />
+				{
+					props.faqs.map((faq, index) => <Accordion question={faq.question} answer={faq.answer} key={index} />)
+				}
 			</div>
 		</div>
 	)
 }
 
-const Accordion = () => {
+
+
+type AccordionProps = {
+	question: string;
+	answer: string;
+}
+
+const Accordion = (props: AccordionProps) => {
 	const [open, setOpen] = React.useState(false);
 	const toggle = () => setOpen(!open);
 
 	return (
 		<div onClick={toggle} className="bg-neutral-300 p-5 cursor-pointer border-[1px] border-neutral-400 transition-all select-none">
 			<div className="title-3 bold text-neutral-1000 flex justify-between">
-				Apa itu P3RI
-				<BiChevronDown className={open ? "transform rotate-180" : ""} />
+				{props.question}
+				<BiChevronDown className={`${open ? "transform rotate-180" : ""} transition-all`} />
 			</div>
-			{
-				open &&
-				<div className="sub-headline font-medium text-neutral-900 py-5">
-					Semua kalangan bisa mengikutin kegiatan P3RI, sedangkan untuk mendaftar sebagai panitia dapat mengecek sosial media P3RI.
-				</div>
-			}
+			<AnimatePresence>
+				{
+					open &&
+					<motion.div
+						key="answer"
+						initial={{ opacity: 0 }}
+						animate={{
+							opacity: 1,
+						}}
+						transition={{ ease: "linear" }}
+						className={`sub-headline font-medium text-neutral-900 py-5 transition-all`}>
+						{props.answer}
+					</motion.div>
+				}
+			</AnimatePresence>
 		</div>
 	)
 }

@@ -20,8 +20,10 @@ const Hero = () => {
 					</div>
 				</div>
 			</div>
-			<div className="m-5 w-full h-full relative">
-				<Image layout="fill" className="w-full h-full object-cover " src="https://res.cloudinary.com/dw4bwn79m/image/upload/v1645656846/Group_1_a0c0hu.png" alt="Hero Img" objectFit="contain" />
+			<div className="w-full h-full p-12">
+				<div className="m-5 w-full h-full relative">
+					<Image layout="fill" className="w-full h-full object-cover " src="https://res.cloudinary.com/dw4bwn79m/image/upload/v1645656846/Group_1_a0c0hu.png" alt="Hero Img" objectFit="contain" />
+				</div>
 			</div>
 		</div>
 	)
