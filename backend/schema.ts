@@ -79,21 +79,13 @@ export const lists: Lists = {
       waktuAkhirAcara: timestamp(),
       tags: relationship({
         ref: "Tag.events",
-        ui: {
-          displayMode: "cards",
-          cardFields: ["name"],
-          inlineEdit: { fields: ["name"] },
-          linkToItem: true,
-          inlineConnect: true,
-          inlineCreate: { fields: ["name"] },
-        },
         many: true,
       }),
       jenisKegiatan: select({
         type: "enum",
         options: [
           { value: "offline", label: "Offline" },
-          { value: "online", label: "online" },
+          { value: "online", label: "Online" },
         ],
       }),
       shortDescription: text(),
@@ -116,10 +108,14 @@ export const lists: Lists = {
   Tag: list({
     ui: {
       isHidden: true,
+      description: "Abaikan dropdown events",
     },
     fields: {
       name: text(),
-      events: relationship({ ref: "Event.tags", many: true }),
+      events: relationship({
+        ref: "Event.tags",
+        many: true,
+      }),
     },
   }),
 };
