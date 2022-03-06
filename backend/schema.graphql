@@ -48,7 +48,13 @@ input StringFilter {
   contains: String
   startsWith: String
   endsWith: String
+  mode: QueryMode
   not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
 }
 
 input NestedStringFilter {
@@ -239,6 +245,7 @@ input FaqCreateInput {
 
 type Event {
   id: ID!
+  namaKegiatan: String
   thumbnail: CloudinaryImage_File
   waktuAwalAcara: DateTime
   waktuAkhirAcara: DateTime
@@ -252,7 +259,7 @@ type Event {
   jenisKegiatan: EventJenisKegiatanType
   shortDescription: String
   longDescription: Event_longDescription_Document
-  is_highlighted: Boolean
+  isHighlighted: Boolean
 }
 
 scalar DateTime
@@ -276,12 +283,13 @@ input EventWhereInput {
   OR: [EventWhereInput!]
   NOT: [EventWhereInput!]
   id: IDFilter
+  namaKegiatan: StringFilter
   waktuAwalAcara: DateTimeNullableFilter
   waktuAkhirAcara: DateTimeNullableFilter
   tags: TagManyRelationFilter
   jenisKegiatan: EventJenisKegiatanTypeNullableFilter
   shortDescription: StringFilter
-  is_highlighted: BooleanFilter
+  isHighlighted: BooleanFilter
 }
 
 input DateTimeNullableFilter {
@@ -315,14 +323,16 @@ input BooleanFilter {
 
 input EventOrderByInput {
   id: OrderDirection
+  namaKegiatan: OrderDirection
   waktuAwalAcara: OrderDirection
   waktuAkhirAcara: OrderDirection
   jenisKegiatan: OrderDirection
   shortDescription: OrderDirection
-  is_highlighted: OrderDirection
+  isHighlighted: OrderDirection
 }
 
 input EventUpdateInput {
+  namaKegiatan: String
   thumbnail: Upload
   waktuAwalAcara: DateTime
   waktuAkhirAcara: DateTime
@@ -330,7 +340,7 @@ input EventUpdateInput {
   jenisKegiatan: EventJenisKegiatanType
   shortDescription: String
   longDescription: JSON
-  is_highlighted: Boolean
+  isHighlighted: Boolean
 }
 
 input TagRelateToManyForUpdateInput {
@@ -346,6 +356,7 @@ input EventUpdateArgs {
 }
 
 input EventCreateInput {
+  namaKegiatan: String
   thumbnail: Upload
   waktuAwalAcara: DateTime
   waktuAkhirAcara: DateTime
@@ -353,7 +364,7 @@ input EventCreateInput {
   jenisKegiatan: EventJenisKegiatanType
   shortDescription: String
   longDescription: JSON
-  is_highlighted: Boolean
+  isHighlighted: Boolean
 }
 
 input TagRelateToManyForCreateInput {
@@ -609,11 +620,6 @@ enum KeystoneAdminUIFieldMetaItemViewFieldMode {
   edit
   read
   hidden
-}
-
-enum QueryMode {
-  default
-  insensitive
 }
 
 type KeystoneAdminUISort {

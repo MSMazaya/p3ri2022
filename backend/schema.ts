@@ -67,6 +67,7 @@ export const lists: Lists = {
 
   Event: list({
     fields: {
+      namaKegiatan: text(),
       thumbnail: cloudinaryImage({
         cloudinary: {
           cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
@@ -101,7 +102,7 @@ export const lists: Lists = {
         links: true,
         dividers: true,
       }),
-      is_highlighted: checkbox(),
+      isHighlighted: checkbox(),
     },
   }),
 
