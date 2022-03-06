@@ -29,7 +29,7 @@ export default function Navbar() {
 			as="nav"
 			className={
 				`${(scroll?.top > 64 || !(router.pathname === '/')) ? "bg-main" : "bg-transparent"} 
-				top-0 z-10 left-0 w-screen fixed
+				top-0 z-50 left-0 w-screen fixed
 			`}
 		>
 			{({ open }) => (

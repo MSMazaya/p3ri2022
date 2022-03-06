@@ -14,6 +14,7 @@ const Headline = () => {
 					Marketplace P3RI
 				</div>
 			</div>
+			<div className="bg-slate-500 rounded-xl w-[80%] mx-auto"></div>
 		</div>
 	)
 }

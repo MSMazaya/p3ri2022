@@ -12,7 +12,7 @@ type Props = {
 
 const Merch = (props: Props) => {
 	return (
-		<div className="mt-32">
+		<div className="mt-32 flex flex-col gap-20">
 			<Headline />
 			<Products merches={props.merches} />
 			<Quote />

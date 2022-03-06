@@ -4,7 +4,7 @@ import HeadlineCounterCard from './HeadlineCounterCard'
 
 const Headline = () => {
 	return (
-		<div className="grid grid-cols-2">
+		<div className="grid grid-cols-2 m-5">
 			<div className="grid grid-cols-2 gap-y-4">
 				<HeadlineCounterCard />
 				<HeadlineCounterCard />
