@@ -1,23 +1,41 @@
-import React from 'react'
-import FullCalendar from "@fullcalendar/react";
-// The import order DOES MATTER here. If you change it, you'll get an error!
-import interactionPlugin from "@fullcalendar/interaction";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import dayGridPlugin from '@fullcalendar/daygrid';
+import React, { ReactNode, useState } from 'react'
+import { getJadwal } from 'services/jadwal';
+import { Event } from 'types/jadwal';
+import Modal from 'components/jadwal/Modal';
+import JadwalCustom from 'components/jadwal/JadwalCustom';
+import Legend from 'components/jadwal/Legend';
+import CalendarButton from 'components/jadwal/CalendarButton';
 
+type Props = {
+	events: Event[];
+	children?: ReactNode;
+}
 
-
-
-const Jadwal = () => {
+const Jadwal = (props: Props) => {
+	const [modalEvent, setModalEvent] = useState<Event | null>(null);
+	const [openModal, setOpenModal] = useState<boolean>(false);
 
 	return (
 		<div className="m-5 mt-32">
-			<FullCalendar
-				initialView='dayGridMonth'
-				plugins={[timeGridPlugin, interactionPlugin, dayGridPlugin]}
-			/>
+			<Modal event={modalEvent} open={openModal} setOpen={setOpenModal} />
+			<div className="relative">
+				<CalendarButton />
+				<JadwalCustom setModalEvent={setModalEvent} setOpenModal={setOpenModal} events={props.events} />
+				<Legend />
+			</div>
 		</div>
 	)
+}
+
+
+export async function getStaticProps() {
+	const events = await getJadwal();
+
+	return {
+		props: {
+			events
+		}
+	}
 }
 
 export default Jadwal

@@ -70,6 +70,14 @@ html {
   );
 }
 
+.fc .fc-toolbar {
+  justify-content: start !important;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  font-weight: bold;
+}
+
 @keyframes bounceX {
   0%,
   100% {
