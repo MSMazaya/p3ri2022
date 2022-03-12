@@ -59,7 +59,7 @@ const MerchCard = (props: MerchCardProps) => {
 				<div className="text-neutral-900 headline bold">
 					Rp89.999,-
 				</div>
-				<div className="body-1 text-neutral-800 medium clamp-elipsis-1">
+				<div className="body-1 text-neutral-800 medium clamp-elipsis-3">
 					<DocumentRenderer document={props.merch.description.document} />
 				</div>
 				<a href={props.merch.productUrl} className="bottom-0 btn-primary block text-center">Beli di Marketplace</a>
