@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa";
-import { BsLine } from "react-icons/bs";
+import { BsLine, BsYoutube } from "react-icons/bs";
 
 const Footer = () => {
 	return (
@@ -52,9 +52,15 @@ const Footer = () => {
 			</div>
 			<div className="flex flex-col items-center justify-center">
 				<div className="flex gap-5 text-neutral-100 text-3xl my-4">
-					<AiFillInstagram />
-					<BsLine />
-					<FaTiktok />
+					<a href="https://www.instagram.com/p3ri.salmanitb/?hl=en">
+						<AiFillInstagram />
+					</a>
+					<a href="https://www.youtube.com/channel/UC0q3ZRelHNhWRhwe2thGzWQ">
+						<BsYoutube />
+					</a>
+					<a href="https://www.tiktok.com/@p3ri.salmanitb?lang=en">
+						<FaTiktok />
+					</a>
 				</div>
 				<div className="caption bold text-neutral-100">
 					P3RI 1443H. All rights resevered. 2022

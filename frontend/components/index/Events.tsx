@@ -17,7 +17,7 @@ const Events = (props: Props) => {
 	}
 
 	return (
-		<div className="p-10 grid grid-cols-2 relative">
+		<div className="p-10 grid grid-cols-2 relative my-10">
 			<div className="flex flex-col gap-10 m-10">
 				<div className="mid-title bold text-neutral-1000">
 					Banyak kegiatan yang kami buat, spesial untuk Anda
@@ -92,7 +92,7 @@ const EventCard = (props: CardProps) => {
 						}
 					</div>
 					<div className="h-80 w-full relative" >
-						<Image src={props.event.thumbnail.publicUrl} alt={props.event.namaKegiatan} layout="fill" />
+						<Image src={props.event.thumbnail.publicUrl} alt={props.event.namaKegiatan} layout="fill" objectFit="cover" />
 					</div>
 					<div className="btn-primary block text-center">Add to Google Calendar</div>
 				</div>

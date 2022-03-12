@@ -4,7 +4,7 @@ import React from 'react'
 
 const Hero = () => {
 	return (
-		<div className="grid grid-cols-2 p-16 bg-main h-screen flex items-center justify-center">
+		<div className="grid grid-cols-2 p-16 bg-main h-screen items-center justify-center">
 			<div className="flex flex-col gap-10 p-8">
 				<div className="big-title bold text-white">
 					Ramadhan dan Idul Adha bersama P3RI
@@ -22,7 +22,7 @@ const Hero = () => {
 						</div>
 					</Link>
 					<Link
-						href="/jadwal"
+						href="/infak"
 						passHref
 					>
 						<div className="px-8 py-2 bg-transparent text-white rounded-md border-[1px] border-white cursor-pointer">

@@ -2,7 +2,7 @@ import Headline from 'components/merch/Headline'
 import Products from 'components/merch/Products'
 import Quote from 'components/merch/Quote'
 import React, { ReactNode } from 'react'
-import { getMerches } from 'services/merch'
+import { getAllMerches } from 'services/merch'
 import { Merch } from 'types/merch'
 
 type Props = {
@@ -21,7 +21,7 @@ const Merch = (props: Props) => {
 }
 
 export async function getStaticProps() {
-	const merches = await getMerches();
+	const merches = await getAllMerches();
 
 	return {
 		props: {
