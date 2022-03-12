@@ -11,9 +11,8 @@ import NextNProgress from 'nextjs-progressbar';
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
     <Head>
-      <title>P3RI Salman ITB</title>
-      <meta name="description" content="" />
       <link rel="icon" href="/favicon.ico" />
+      <meta name="keywords" content="p3ri, salmanitb, ramadhan" />
     </Head>
     <AnimatePresence
       exitBeforeEnter

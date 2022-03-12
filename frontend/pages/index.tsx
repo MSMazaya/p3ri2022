@@ -25,7 +25,8 @@ const Home: NextPage = (props: Props) => {
   return (
     <>
       <Head>
-
+        <title>P3RI Salman ITB</title>
+        <meta name="description" content="Maksimalkan amal ibadah anda dengan berbagai kegiatan dan materi yang bermanfaat bersama P3RI Salman ITB" />
       </Head>
       <React.Fragment>
         <Hero />

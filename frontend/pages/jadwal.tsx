@@ -5,6 +5,7 @@ import Modal from 'components/jadwal/Modal';
 import JadwalCustom from 'components/jadwal/JadwalCustom';
 import Legend from 'components/jadwal/Legend';
 import CalendarButton from 'components/jadwal/CalendarButton';
+import Head from 'next/head';
 
 type Props = {
 	events: Event[];
@@ -16,14 +17,21 @@ const Jadwal = (props: Props) => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
 
 	return (
-		<div className="m-5 mt-32">
-			<Modal event={modalEvent} open={openModal} setOpen={setOpenModal} />
-			<div className="relative">
-				<CalendarButton />
-				<JadwalCustom setModalEvent={setModalEvent} setOpenModal={setOpenModal} events={props.events} />
-				<Legend />
+		<>
+			<Head>
+				<title>Jadwal Kegiatan P3RI</title>
+				<meta name="description" content="Seluruh jadwal kegiatan offline maupun online dari P3RI Salman ITB" />
+			</Head>
+			<div className="m-5 mt-32">
+				<Modal event={modalEvent} open={openModal} setOpen={setOpenModal} />
+				<div className="relative">
+					<CalendarButton />
+					<JadwalCustom setModalEvent={setModalEvent} setOpenModal={setOpenModal} events={props.events} />
+					<Legend />
+				</div>
+
 			</div>
-		</div>
+		</>
 	)
 }
 

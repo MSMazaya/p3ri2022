@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa";
-import { BsLine, BsYoutube } from "react-icons/bs";
+import { BsYoutube } from "react-icons/bs";
 
 const Footer = () => {
 	return (

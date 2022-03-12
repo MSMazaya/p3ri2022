@@ -1,5 +1,6 @@
 import OtherVideos from 'components/live-stream/OtherVideos'
 import VideoHighlighted from 'components/live-stream/VideoHighlighted'
+import Head from 'next/head'
 import React, { ReactNode } from 'react'
 import { getYoutubeVideos } from 'services/youtube'
 import { VideoItem } from 'types/video'
@@ -12,10 +13,16 @@ type Props = {
 
 const LiveStream = (props: Props) => {
 	return (
-		<div className="m-5 grid grid-cols-4 mt-32">
-			<VideoHighlighted video={props.firstVideo} />
-			<OtherVideos videos={props.otherVideos} />
-		</div>
+		<>
+			<Head>
+				<title>Live Stream</title>
+				<meta name="description" content="Tonton livestream dari kegiatan yang sedang berlangsung di P3RI" />
+			</Head>
+			<div className="m-5 grid grid-cols-4 mt-32">
+				<VideoHighlighted video={props.firstVideo} />
+				<OtherVideos videos={props.otherVideos} />
+			</div>
+		</>
 	)
 }
 
