@@ -22,7 +22,6 @@ const Merch = (props: Props) => {
 
 export async function getStaticProps() {
 	const merches = await getMerches();
-	console.log(merches)
 
 	return {
 		props: {

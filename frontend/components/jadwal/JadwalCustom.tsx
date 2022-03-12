@@ -17,8 +17,8 @@ export default function JadwalCustom(props: Props) {
 			initialView='dayGridMonth'
 			plugins={[timeGridPlugin, interactionPlugin, dayGridPlugin]}
 			events={props.events.map(e => ({
-				backgroundColor: e.jenisKegiatan === "offline" ? "#387a5a" : "#BD8A26",
-				borderColor: e.jenisKegiatan === "offline" ? "#3e8361" : "#ca962f",
+				backgroundColor: e.jenisKegiatan === "online" ? "#387a5a" : "#BD8A26",
+				borderColor: e.jenisKegiatan === "online" ? "#3e8361" : "#ca962f",
 				title: e?.namaKegiatan,
 				start: e?.waktuAwalAcara,
 				end: e?.waktuAkhirAcara,
