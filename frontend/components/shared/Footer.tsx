@@ -8,7 +8,7 @@ import Link from 'next/link';
 const Footer = () => {
 	return (
 		<div className="bg-primary-pressed p-10 mt-32">
-			<div className="flex md:flex-row flex-col justify-center md:items-center">
+			<div className="flex md:flex-row flex-col justify-center md:justify-between items-center md:items-start">
 				<div className="flex gap-10 md:gap-2 md:p-0 p-5">
 					<div className="md:p-5">
 						<Image src="https://res.cloudinary.com/dw4bwn79m/image/upload/v1646228910/Vector_j7ct2o.png" alt="logo p3ri" height="50" width="50" />
@@ -27,7 +27,7 @@ const Footer = () => {
 						</div>
 					</div>
 				</div>
-				<div className="grid grid-cols-2 md:grid-cols-3 md:gap-5 gap-y-10 text-neutral-100 w-full">
+				<div className="grid grid-cols-2 md:grid-cols-3 md:gap-5 gap-y-10 md:gap-y-0 text-neutral-100 w-full md:w-auto">
 					<div className="flex flex-col">
 						<div className="headline bold">Tentang Kami</div>
 						<Link href="/about" passHref>
