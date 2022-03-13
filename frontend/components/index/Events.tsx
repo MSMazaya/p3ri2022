@@ -59,7 +59,7 @@ const Events = (props: Props) => {
 					<div className="w-fit overflow-x-hidden flex gap-3 pb-4">
 						{
 							props.events.map((event, index) => (<>
-								<EventCard event={event} />
+								<EventCard event={event} key={index} />
 								<div id={`${index}-scrollTo`} />
 							</>))
 						}

@@ -3,6 +3,7 @@ import React from 'react'
 import { AiFillInstagram } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa";
 import { BsYoutube } from "react-icons/bs";
+import Link from 'next/link';
 
 const Footer = () => {
 	return (
@@ -29,8 +30,12 @@ const Footer = () => {
 				<div className="grid grid-cols-3 gap-5 text-neutral-100">
 					<div className="flex flex-col">
 						<div className="headline bold">Tentang Kami</div>
-						<a href="#" className="body-1 medium">Kepanitiaan</a>
-						<a href="#" className="body-1 medium">Blog</a>
+						<Link href="/about" passHref>
+							<div className="body-1 medium cursor-pointer">Kepanitiaan</div>
+						</Link>
+						<Link href="/blog" passHref>
+							<div className="body-1 medium cursor-pointer">Blog</div>
+						</Link>
 					</div>
 					<div className="flex flex-col">
 						<div className="headline bold">Hubungi Kami</div>
