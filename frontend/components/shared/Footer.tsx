@@ -8,9 +8,9 @@ import Link from 'next/link';
 const Footer = () => {
 	return (
 		<div className="bg-primary-pressed p-10 mt-32">
-			<div className="flex justify-between">
-				<div className="flex gap-2">
-					<div className="p-5">
+			<div className="flex md:flex-row flex-col justify-center md:items-center">
+				<div className="flex gap-10 md:gap-2 md:p-0 p-5">
+					<div className="md:p-5">
 						<Image src="https://res.cloudinary.com/dw4bwn79m/image/upload/v1646228910/Vector_j7ct2o.png" alt="logo p3ri" height="50" width="50" />
 					</div>
 					<div>
@@ -27,7 +27,7 @@ const Footer = () => {
 						</div>
 					</div>
 				</div>
-				<div className="grid grid-cols-3 gap-5 text-neutral-100">
+				<div className="grid grid-cols-2 md:grid-cols-3 md:gap-5 gap-y-10 text-neutral-100 w-full">
 					<div className="flex flex-col">
 						<div className="headline bold">Tentang Kami</div>
 						<Link href="/about" passHref>
@@ -42,7 +42,7 @@ const Footer = () => {
 						<a href="#" className="body-1 medium">Kontak</a>
 						<a href="#" className="body-1 medium">Bantuan</a>
 					</div>
-					<div className="flex flex-col">
+					<div className="flex flex-col md:col-span-1 col-span-2">
 						<div className="headline bold">Bekerja sama dengan</div>
 						<div className="flex">
 							<div className="p-5">

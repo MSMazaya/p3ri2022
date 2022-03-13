@@ -11,7 +11,7 @@ const Faq = (props: Props) => {
 	return (
 		<div className="p-5 mt-10">
 			<div className="mid-title bold text-neutral-1000 text-center p-5">F.A.Q</div>
-			<div className="border-[1px] border-neutral-400 rounded-xl overflow-hidden">
+			<div className="border-[1px] border-neutral-200 rounded-xl overflow-hidden">
 				{
 					props.faqs.map((faq, index) => <Accordion question={faq.question} answer={faq.answer} key={index} />)
 				}
@@ -30,7 +30,7 @@ const Accordion = (props: AccordionProps) => {
 	const toggle = () => setOpen(!open);
 
 	return (
-		<div onClick={toggle} className="bg-neutral-300 p-5 cursor-pointer border-[1px] border-neutral-400 transition-all select-none">
+		<div onClick={toggle} className="bg-neutral-100 p-5 cursor-pointer border-[1px] border-neutral-200 transition-all select-none">
 			<div className="title-3 bold text-neutral-1000 flex justify-between">
 				{props.question}
 				<BiChevronDown className={`${open ? "transform rotate-180" : ""} transition-all`} />

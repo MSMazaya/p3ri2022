@@ -37,7 +37,7 @@ const Events = (props: Props) => {
 
 	return (
 		<>
-			<div className="p-10 grid grid-cols-2 relative my-10">
+			<div className="p-10 grid grid-cols-1 md:grid-cols-2 relative my-10">
 				<div className="flex flex-col gap-10 m-10">
 					<div className="mid-title bold text-neutral-1000">
 						Banyak kegiatan yang kami buat, spesial untuk Anda
@@ -55,31 +55,35 @@ const Events = (props: Props) => {
 						</div>
 					</Link>
 				</div>
-				<div className="overflow-x-scroll no-scrollbar" ref={scrollRef}>
-					<div className="w-fit overflow-x-hidden flex gap-3 pb-4">
-						{
-							props.events.map((event, index) => (<>
-								<EventCard event={event} key={index} />
-								<div id={`${index}-scrollTo`} />
-							</>))
-						}
-						<div className="absolute right-[15%] bottom-[4%] flex gap-3 select-none">
-							{
-								props.events.map((_, index) =>
-									<div
-										className={`bg-neutral-600 ${index === selectedIndex ? "" : "opacity-50"} rounded-xl p-2 shadow-xl cursor-pointer`}
-										key={index}
-										onClick={() => {
-											setInUserClickedInterval(true);
-											select(index);
-											setTimeout(() => {
-												setInUserClickedInterval(false);
-											}, 5000)
-										}}
-									></div>
-								)
-							}
-						</div>
+				<DesktopCarousel
+					selectedIndex={selectedIndex}
+					scrollRef={scrollRef}
+					setInUserClickedInterval={setInUserClickedInterval}
+					select={select}
+					events={props.events}
+				/>
+			</div>
+		</>
+	)
+}
+
+function DesktopCarousel(props) {
+	return (
+		<>
+			<div className="overflow-x-scroll no-scrollbar" ref={props.scrollRef}>
+				<div className="w-fit overflow-x-hidden flex gap-3 pb-4">
+					{props.events.map((event, index) => <>
+						<EventCard event={event} key={index} />
+						<div id={`${index}-scrollTo`} />
+					</>)}
+					<div className="absolute md:right-[15%] md:bottom-[4%] md:left-auto md:translate-x-0 bottom-0 left-[50%] transform translate-x-[-50%] flex gap-3 select-none">
+						{props.events.map((_, index) => <div className={`bg-neutral-600 ${index === props.selectedIndex ? "" : "opacity-50"} rounded-xl p-2 shadow-xl cursor-pointer`} key={index} onClick={() => {
+							props.setInUserClickedInterval(true);
+							props.select(index);
+							setTimeout(() => {
+								props.setInUserClickedInterval(false);
+							}, 5000);
+						}}></div>)}
 					</div>
 				</div>
 			</div>
@@ -90,7 +94,7 @@ const Events = (props: Props) => {
 			`}
 			</style>
 		</>
-	)
+	);
 }
 
 
@@ -112,10 +116,10 @@ const EventCard = (props: CardProps) => {
 					<div className="title-2 bold text-neutral-1000 capitalize">
 						{props.event.namaKegiatan}
 					</div>
-					<div className="sub-headline font-medium text-neutral-800">
+					<div className="sub-headline font-medium text-neutral-800 md:block hidden">
 						{props.event.shortDescription}
 					</div>
-					<div className="flex gap-3">
+					<div className="gap-3 md:flex hidden">
 						{
 							props.event.tags.map(({ name }, idx) => (
 								<div
@@ -127,10 +131,10 @@ const EventCard = (props: CardProps) => {
 							))
 						}
 					</div>
-					<div className="h-80 w-full relative" >
+					<div className="hidden md:block h-80 w-full relative" >
 						<Image src={props.event.thumbnail.publicUrl} alt={props.event.namaKegiatan} layout="fill" objectFit="cover" />
 					</div>
-					<div className="btn-primary block text-center">Add to Google Calendar</div>
+					<div className="hidden md:block btn-primary text-center">Add to Google Calendar</div>
 				</div>
 			</div>
 		</div>

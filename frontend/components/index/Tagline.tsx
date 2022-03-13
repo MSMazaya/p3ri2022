@@ -3,7 +3,7 @@ import React from 'react'
 
 const Tagline = () => {
 	return (
-		<div className="bg-[#237D9F] w-full flex items-stretch mt-32">
+		<div className="bg-[#237D9F] w-full md:flex items-stretch mt-32 hidden">
 			<Image width="736" height="400" src="https://res.cloudinary.com/dw4bwn79m/image/upload/v1646225192/Stock_Visual_1_va3hgo.png" alt="tagline image" />
 			<div className="flex align-center items-center">
 				<div className="text-neutral-100 title-1 bold p-5">
