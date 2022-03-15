@@ -84,6 +84,18 @@ export const lists: Lists = {
       question: text(),
       answer: text(),
     },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+      },
+    },
   }),
 
   Event: list({
@@ -124,6 +136,24 @@ export const lists: Lists = {
         dividers: true,
       }),
       isHighlighted: checkbox(),
+    },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/jadwal",
+            secret,
+          },
+        });
+      },
     },
   }),
 
