@@ -36,7 +36,7 @@ const Jadwal = (props: Props) => {
 }
 
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const events = await getJadwal();
 
 	return {

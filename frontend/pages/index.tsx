@@ -40,7 +40,7 @@ const Home: NextPage = (props: Props) => {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const faqs = await getFaqs();
   const events = await getHighlightedJadwal();
   const merches = await getMerchesPaginated(2, 0);

@@ -27,7 +27,7 @@ const Merch = (props: Props) => {
 	)
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const merches = await getAllMerches();
 
 	return {

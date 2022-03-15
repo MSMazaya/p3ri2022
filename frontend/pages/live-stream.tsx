@@ -26,7 +26,7 @@ const LiveStream = (props: Props) => {
 	)
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const videosData = await getYoutubeVideos();
 	const firstVideo = videosData.items[0];
 	const otherVideos = videosData.items.slice(1);
