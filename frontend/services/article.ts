@@ -6,7 +6,7 @@ export const getArticlesPaginated = async (take: number, skip: number) => {
   const { data } = await client.query<Articles>({
     query: gql`
       {
-        articles(take: ${take}, skip: ${skip}, orderBy: { publishedAt: desc }) {
+        articles(take: ${take}, skip: ${skip}, orderBy: { publishedAt: asc }) {
           id
           title
           content {
