@@ -240,6 +240,18 @@ export const lists: Lists = {
       publishedAt: timestamp(),
       minutesToRead: integer(),
     },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+      },
+    },
   }),
 
   photoDokumentasi: list({
@@ -253,6 +265,18 @@ export const lists: Lists = {
         },
       }),
       caption: text(),
+    },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+      },
     },
   }),
 
@@ -268,6 +292,18 @@ export const lists: Lists = {
         },
       }),
     },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+      },
+    },
   }),
 
   mediaPartner: list({
@@ -281,6 +317,18 @@ export const lists: Lists = {
           folder: process.env.CLOUDINARY_API_FOLDER,
         },
       }),
+    },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+      },
     },
   }),
 };
