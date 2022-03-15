@@ -7,6 +7,7 @@ import {
   timestamp,
   select,
   checkbox,
+  integer,
 } from "@keystone-6/core/fields";
 import { cloudinaryImage } from "@keystone-6/cloudinary";
 import { document } from "@keystone-6/fields-document";
@@ -116,6 +117,119 @@ export const lists: Lists = {
       events: relationship({
         ref: "Event.tags",
         many: true,
+      }),
+    },
+  }),
+
+  Program: list({
+    fields: {
+      namaProgram: text(),
+      deskripsiProgram: document({
+        formatting: true,
+        layouts: [
+          [1, 1],
+          [1, 1, 1],
+          [2, 1],
+          [1, 2],
+          [1, 2, 1],
+        ],
+        links: true,
+        dividers: true,
+      }),
+      thumbnail: cloudinaryImage({
+        cloudinary: {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+          apiKey: process.env.CLOUDINARY_API_KEY as string,
+          apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+          folder: process.env.CLOUDINARY_API_FOLDER,
+        },
+      }),
+      articles: relationship({
+        ref: "Article",
+        many: true,
+      }),
+      timelines: relationship({
+        ref: "Event",
+        many: true,
+      }),
+    },
+  }),
+
+  Article: list({
+    fields: {
+      title: text(),
+      content: document({
+        formatting: true,
+        layouts: [
+          [1, 1],
+          [1, 1, 1],
+          [2, 1],
+          [1, 2],
+          [1, 2, 1],
+        ],
+        links: true,
+        dividers: true,
+      }),
+      thumbnail: cloudinaryImage({
+        cloudinary: {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+          apiKey: process.env.CLOUDINARY_API_KEY as string,
+          apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+          folder: process.env.CLOUDINARY_API_FOLDER,
+        },
+      }),
+      author: text(),
+      authorPhoto: cloudinaryImage({
+        cloudinary: {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+          apiKey: process.env.CLOUDINARY_API_KEY as string,
+          apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+          folder: process.env.CLOUDINARY_API_FOLDER,
+        },
+      }),
+      publishedAt: timestamp(),
+      minutesToRead: integer(),
+    },
+  }),
+
+  photoDokumentasi: list({
+    fields: {
+      photo: cloudinaryImage({
+        cloudinary: {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+          apiKey: process.env.CLOUDINARY_API_KEY as string,
+          apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+          folder: process.env.CLOUDINARY_API_FOLDER,
+        },
+      }),
+      caption: text(),
+    },
+  }),
+
+  sponsor: list({
+    fields: {
+      name: text(),
+      logo: cloudinaryImage({
+        cloudinary: {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+          apiKey: process.env.CLOUDINARY_API_KEY as string,
+          apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+          folder: process.env.CLOUDINARY_API_FOLDER,
+        },
+      }),
+    },
+  }),
+
+  mediaPartner: list({
+    fields: {
+      name: text(),
+      logo: cloudinaryImage({
+        cloudinary: {
+          cloudName: process.env.CLOUDINARY_CLOUD_NAME as string,
+          apiKey: process.env.CLOUDINARY_API_KEY as string,
+          apiSecret: process.env.CLOUDINARY_API_SECRET as string,
+          folder: process.env.CLOUDINARY_API_FOLDER,
+        },
       }),
     },
   }),

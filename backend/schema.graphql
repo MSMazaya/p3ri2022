@@ -48,7 +48,13 @@ input StringFilter {
   contains: String
   startsWith: String
   endsWith: String
+  mode: QueryMode
   not: NestedStringFilter
+}
+
+enum QueryMode {
+  default
+  insensitive
 }
 
 input NestedStringFilter {
@@ -429,6 +435,277 @@ input EventRelateToManyForCreateInput {
   connect: [EventWhereUniqueInput!]
 }
 
+type Program {
+  id: ID!
+  namaProgram: String
+  deskripsiProgram: Program_deskripsiProgram_Document
+  thumbnail: CloudinaryImage_File
+  articles(
+    where: ArticleWhereInput! = {}
+    orderBy: [ArticleOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Article!]
+  articlesCount(where: ArticleWhereInput! = {}): Int
+  timelines(
+    where: EventWhereInput! = {}
+    orderBy: [EventOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Event!]
+  timelinesCount(where: EventWhereInput! = {}): Int
+}
+
+type Program_deskripsiProgram_Document {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input ProgramWhereUniqueInput {
+  id: ID
+}
+
+input ProgramWhereInput {
+  AND: [ProgramWhereInput!]
+  OR: [ProgramWhereInput!]
+  NOT: [ProgramWhereInput!]
+  id: IDFilter
+  namaProgram: StringFilter
+  articles: ArticleManyRelationFilter
+  timelines: EventManyRelationFilter
+}
+
+input ArticleManyRelationFilter {
+  every: ArticleWhereInput
+  some: ArticleWhereInput
+  none: ArticleWhereInput
+}
+
+input ProgramOrderByInput {
+  id: OrderDirection
+  namaProgram: OrderDirection
+}
+
+input ProgramUpdateInput {
+  namaProgram: String
+  deskripsiProgram: JSON
+  thumbnail: Upload
+  articles: ArticleRelateToManyForUpdateInput
+  timelines: EventRelateToManyForUpdateInput
+}
+
+input ArticleRelateToManyForUpdateInput {
+  disconnect: [ArticleWhereUniqueInput!]
+  set: [ArticleWhereUniqueInput!]
+  create: [ArticleCreateInput!]
+  connect: [ArticleWhereUniqueInput!]
+}
+
+input ProgramUpdateArgs {
+  where: ProgramWhereUniqueInput!
+  data: ProgramUpdateInput!
+}
+
+input ProgramCreateInput {
+  namaProgram: String
+  deskripsiProgram: JSON
+  thumbnail: Upload
+  articles: ArticleRelateToManyForCreateInput
+  timelines: EventRelateToManyForCreateInput
+}
+
+input ArticleRelateToManyForCreateInput {
+  create: [ArticleCreateInput!]
+  connect: [ArticleWhereUniqueInput!]
+}
+
+type Article {
+  id: ID!
+  title: String
+  content: Article_content_Document
+  thumbnail: CloudinaryImage_File
+  author: String
+  authorPhoto: CloudinaryImage_File
+  publishedAt: DateTime
+  minutesToRead: Int
+}
+
+type Article_content_Document {
+  document(hydrateRelationships: Boolean! = false): JSON!
+}
+
+input ArticleWhereUniqueInput {
+  id: ID
+}
+
+input ArticleWhereInput {
+  AND: [ArticleWhereInput!]
+  OR: [ArticleWhereInput!]
+  NOT: [ArticleWhereInput!]
+  id: IDFilter
+  title: StringFilter
+  author: StringFilter
+  publishedAt: DateTimeNullableFilter
+  minutesToRead: IntNullableFilter
+}
+
+input IntNullableFilter {
+  equals: Int
+  in: [Int!]
+  notIn: [Int!]
+  lt: Int
+  lte: Int
+  gt: Int
+  gte: Int
+  not: IntNullableFilter
+}
+
+input ArticleOrderByInput {
+  id: OrderDirection
+  title: OrderDirection
+  author: OrderDirection
+  publishedAt: OrderDirection
+  minutesToRead: OrderDirection
+}
+
+input ArticleUpdateInput {
+  title: String
+  content: JSON
+  thumbnail: Upload
+  author: String
+  authorPhoto: Upload
+  publishedAt: DateTime
+  minutesToRead: Int
+}
+
+input ArticleUpdateArgs {
+  where: ArticleWhereUniqueInput!
+  data: ArticleUpdateInput!
+}
+
+input ArticleCreateInput {
+  title: String
+  content: JSON
+  thumbnail: Upload
+  author: String
+  authorPhoto: Upload
+  publishedAt: DateTime
+  minutesToRead: Int
+}
+
+type photoDokumentasi {
+  id: ID!
+  photo: CloudinaryImage_File
+  caption: String
+}
+
+input photoDokumentasiWhereUniqueInput {
+  id: ID
+}
+
+input photoDokumentasiWhereInput {
+  AND: [photoDokumentasiWhereInput!]
+  OR: [photoDokumentasiWhereInput!]
+  NOT: [photoDokumentasiWhereInput!]
+  id: IDFilter
+  caption: StringFilter
+}
+
+input photoDokumentasiOrderByInput {
+  id: OrderDirection
+  caption: OrderDirection
+}
+
+input photoDokumentasiUpdateInput {
+  photo: Upload
+  caption: String
+}
+
+input photoDokumentasiUpdateArgs {
+  where: photoDokumentasiWhereUniqueInput!
+  data: photoDokumentasiUpdateInput!
+}
+
+input photoDokumentasiCreateInput {
+  photo: Upload
+  caption: String
+}
+
+type sponsor {
+  id: ID!
+  name: String
+  logo: CloudinaryImage_File
+}
+
+input sponsorWhereUniqueInput {
+  id: ID
+}
+
+input sponsorWhereInput {
+  AND: [sponsorWhereInput!]
+  OR: [sponsorWhereInput!]
+  NOT: [sponsorWhereInput!]
+  id: IDFilter
+  name: StringFilter
+}
+
+input sponsorOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+}
+
+input sponsorUpdateInput {
+  name: String
+  logo: Upload
+}
+
+input sponsorUpdateArgs {
+  where: sponsorWhereUniqueInput!
+  data: sponsorUpdateInput!
+}
+
+input sponsorCreateInput {
+  name: String
+  logo: Upload
+}
+
+type mediaPartner {
+  id: ID!
+  name: String
+  logo: CloudinaryImage_File
+}
+
+input mediaPartnerWhereUniqueInput {
+  id: ID
+}
+
+input mediaPartnerWhereInput {
+  AND: [mediaPartnerWhereInput!]
+  OR: [mediaPartnerWhereInput!]
+  NOT: [mediaPartnerWhereInput!]
+  id: IDFilter
+  name: StringFilter
+}
+
+input mediaPartnerOrderByInput {
+  id: OrderDirection
+  name: OrderDirection
+}
+
+input mediaPartnerUpdateInput {
+  name: String
+  logo: Upload
+}
+
+input mediaPartnerUpdateArgs {
+  where: mediaPartnerWhereUniqueInput!
+  data: mediaPartnerUpdateInput!
+}
+
+input mediaPartnerCreateInput {
+  name: String
+  logo: Upload
+}
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -468,6 +745,59 @@ type Mutation {
   updateTags(data: [TagUpdateArgs!]!): [Tag]
   deleteTag(where: TagWhereUniqueInput!): Tag
   deleteTags(where: [TagWhereUniqueInput!]!): [Tag]
+  createProgram(data: ProgramCreateInput!): Program
+  createPrograms(data: [ProgramCreateInput!]!): [Program]
+  updateProgram(
+    where: ProgramWhereUniqueInput!
+    data: ProgramUpdateInput!
+  ): Program
+  updatePrograms(data: [ProgramUpdateArgs!]!): [Program]
+  deleteProgram(where: ProgramWhereUniqueInput!): Program
+  deletePrograms(where: [ProgramWhereUniqueInput!]!): [Program]
+  createArticle(data: ArticleCreateInput!): Article
+  createArticles(data: [ArticleCreateInput!]!): [Article]
+  updateArticle(
+    where: ArticleWhereUniqueInput!
+    data: ArticleUpdateInput!
+  ): Article
+  updateArticles(data: [ArticleUpdateArgs!]!): [Article]
+  deleteArticle(where: ArticleWhereUniqueInput!): Article
+  deleteArticles(where: [ArticleWhereUniqueInput!]!): [Article]
+  createphotoDokumentasi(data: photoDokumentasiCreateInput!): photoDokumentasi
+  createPhotoDokumentasis(
+    data: [photoDokumentasiCreateInput!]!
+  ): [photoDokumentasi]
+  updatephotoDokumentasi(
+    where: photoDokumentasiWhereUniqueInput!
+    data: photoDokumentasiUpdateInput!
+  ): photoDokumentasi
+  updatePhotoDokumentasis(
+    data: [photoDokumentasiUpdateArgs!]!
+  ): [photoDokumentasi]
+  deletephotoDokumentasi(
+    where: photoDokumentasiWhereUniqueInput!
+  ): photoDokumentasi
+  deletePhotoDokumentasis(
+    where: [photoDokumentasiWhereUniqueInput!]!
+  ): [photoDokumentasi]
+  createsponsor(data: sponsorCreateInput!): sponsor
+  createSponsors(data: [sponsorCreateInput!]!): [sponsor]
+  updatesponsor(
+    where: sponsorWhereUniqueInput!
+    data: sponsorUpdateInput!
+  ): sponsor
+  updateSponsors(data: [sponsorUpdateArgs!]!): [sponsor]
+  deletesponsor(where: sponsorWhereUniqueInput!): sponsor
+  deleteSponsors(where: [sponsorWhereUniqueInput!]!): [sponsor]
+  createmediaPartner(data: mediaPartnerCreateInput!): mediaPartner
+  createMediaPartners(data: [mediaPartnerCreateInput!]!): [mediaPartner]
+  updatemediaPartner(
+    where: mediaPartnerWhereUniqueInput!
+    data: mediaPartnerUpdateInput!
+  ): mediaPartner
+  updateMediaPartners(data: [mediaPartnerUpdateArgs!]!): [mediaPartner]
+  deletemediaPartner(where: mediaPartnerWhereUniqueInput!): mediaPartner
+  deleteMediaPartners(where: [mediaPartnerWhereUniqueInput!]!): [mediaPartner]
   endSession: Boolean!
   authenticateUserWithPassword(
     email: String!
@@ -538,6 +868,46 @@ type Query {
   ): [Tag!]
   tag(where: TagWhereUniqueInput!): Tag
   tagsCount(where: TagWhereInput! = {}): Int
+  programs(
+    where: ProgramWhereInput! = {}
+    orderBy: [ProgramOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Program!]
+  program(where: ProgramWhereUniqueInput!): Program
+  programsCount(where: ProgramWhereInput! = {}): Int
+  articles(
+    where: ArticleWhereInput! = {}
+    orderBy: [ArticleOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [Article!]
+  article(where: ArticleWhereUniqueInput!): Article
+  articlesCount(where: ArticleWhereInput! = {}): Int
+  photoDokumentasis(
+    where: photoDokumentasiWhereInput! = {}
+    orderBy: [photoDokumentasiOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [photoDokumentasi!]
+  photoDokumentasi(where: photoDokumentasiWhereUniqueInput!): photoDokumentasi
+  photoDokumentasisCount(where: photoDokumentasiWhereInput! = {}): Int
+  sponsors(
+    where: sponsorWhereInput! = {}
+    orderBy: [sponsorOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [sponsor!]
+  sponsor(where: sponsorWhereUniqueInput!): sponsor
+  sponsorsCount(where: sponsorWhereInput! = {}): Int
+  mediaPartners(
+    where: mediaPartnerWhereInput! = {}
+    orderBy: [mediaPartnerOrderByInput!]! = []
+    take: Int
+    skip: Int! = 0
+  ): [mediaPartner!]
+  mediaPartner(where: mediaPartnerWhereUniqueInput!): mediaPartner
+  mediaPartnersCount(where: mediaPartnerWhereInput! = {}): Int
   keystone: KeystoneMeta!
   authenticatedItem: AuthenticatedItem
 }
@@ -614,11 +984,6 @@ enum KeystoneAdminUIFieldMetaItemViewFieldMode {
   edit
   read
   hidden
-}
-
-enum QueryMode {
-  default
-  insensitive
 }
 
 type KeystoneAdminUISort {
