@@ -63,13 +63,13 @@ export const lists: Lists = {
       afterOperation: async () => {
         const validateUrl = process.env.VALIDATE_URL as string;
         const secret = process.env.SECRET_REVALIDATE_TOKEN;
-        await axios.patch(validateUrl, {
+        await axios.get(validateUrl, {
           params: {
             path: "/",
             secret,
           },
         });
-        await axios.patch(validateUrl, {
+        await axios.get(validateUrl, {
           params: {
             path: "/merch",
             secret,
