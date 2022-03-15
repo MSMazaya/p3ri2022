@@ -9,11 +9,13 @@ import Link from 'next/link';
 const toNavigation = (name, href) => ({ name, href });
 
 const navigation = [
+	toNavigation("Program", "/program"),
 	toNavigation("Live Stream", "/live-stream"),
 	toNavigation("Jadwal", "/jadwal"),
 	toNavigation("Infak", "/infak"),
 	toNavigation("Merchandise", "/merch"),
 	toNavigation("Sponsor", "/sponsor"),
+	toNavigation("Blog", "/blog"),
 ]
 
 function classNames(...classes) {
