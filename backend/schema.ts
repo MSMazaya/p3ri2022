@@ -9,6 +9,8 @@ import {
   checkbox,
   integer,
 } from "@keystone-6/core/fields";
+import axios from "axios";
+
 import { cloudinaryImage } from "@keystone-6/cloudinary";
 import { document } from "@keystone-6/fields-document";
 
@@ -56,6 +58,24 @@ export const lists: Lists = {
           folder: process.env.CLOUDINARY_API_FOLDER,
         },
       }),
+    },
+    hooks: {
+      afterOperation: async () => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/merch",
+            secret,
+          },
+        });
+      },
     },
   }),
 
