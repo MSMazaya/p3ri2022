@@ -26,19 +26,21 @@ const Events = (props: Props) => {
 	}, 5000)
 
 	const select = (index: number) => {
-		const { left } = document.getElementById(`${index}-scrollTo`).getBoundingClientRect();
-		scrollRef.current.scrollTo({
-			top: 0,
-			left: index ? left : 0,
-			behavior: 'smooth',
-		})
-		setSelectedIndex(index);
+		if (props.events.length) {
+			const { left } = document.getElementById(`${index}-scrollTo`).getBoundingClientRect();
+			scrollRef.current.scrollTo({
+				top: 0,
+				left: index ? left : 0,
+				behavior: 'smooth',
+			})
+			setSelectedIndex(index);
+		}
 	}
 
 	return (
 		<>
-			<div className="p-10 grid grid-cols-1 md:grid-cols-2 relative my-10">
-				<div className="flex flex-col gap-10 m-10">
+			<div className={props.events.length ? "p-10 grid grid-cols-1 md:grid-cols-2 relative my-10" : "p-10 my-10 flex items-center justify-center relative"}>
+				<div className={props.events.length ? "flex flex-col gap-10 m-10" : "flex flex-col gap-10 m-10 items-center text-center"}>
 					<div className="mid-title bold text-neutral-1000">
 						Banyak kegiatan yang kami buat, spesial untuk Anda
 					</div>
