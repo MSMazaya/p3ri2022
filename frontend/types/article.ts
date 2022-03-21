@@ -17,3 +17,9 @@ export type Article = {
 export type Articles = {
   articles: Article[];
 };
+
+export type ArticleIds = {
+  articles: {
+    id: string;
+  }[];
+};

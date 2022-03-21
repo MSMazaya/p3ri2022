@@ -9,7 +9,7 @@ const Index = () => {
 	const [showButton, setShowButton] = useState(true);
 	const TAKE = 8
 
-	const { data, size, setSize } = useSWRInfinite<Article[]>(
+	const { data, size, setSize, isValidating } = useSWRInfinite<Article[]>(
 		(pageIndex, previousPageData) => {
 			if (previousPageData && previousPageData.length < TAKE) {
 				setShowButton(false);
@@ -36,7 +36,24 @@ const Index = () => {
 				}
 			</div>
 			{
-				data && (data.length >= TAKE) && showButton &&
+				isValidating &&
+				<div className="grid grid-cols-4 gap-10">
+					{
+						[1, 2, 3, 4, 5, 6, 7, 8].map(x =>
+							<div key={x} className="flex flex-col gap-2 p-4 cursor-pointer rounded-xl animate-pulse">
+								<div className="h-40 bg-gray-500 relative rounded-xl overflow-hidden"></div>
+								<div className="h-6 w-[50%] mx-auto bg-gray-500 relative rounded-xl overflow-hidden"></div>
+								<div className="h-4 bg-gray-500 relative rounded-xl overflow-hidden"></div>
+								<div className="h-4 bg-gray-500 relative rounded-xl overflow-hidden"></div>
+								<div className="h-4 bg-gray-500 relative rounded-xl overflow-hidden"></div>
+								<div className="h-4 bg-gray-500 relative rounded-xl overflow-hidden"></div>
+							</div>
+						)
+					}
+				</div>
+			}
+			{
+				data && (data.length >= TAKE) && showButton && !isValidating &&
 				<div className="btn-primary w-fit mx-auto py-4 my-4" onClick={takeMoreData}>
 					Show More
 				</div>

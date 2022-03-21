@@ -13,8 +13,8 @@ const SponsorAndMedpar = (props: Props) => {
 			<div className="title-2 bold text-neutral-1000">Disponsori Oleh</div>
 			<div className="grid grid-cols-5 gap-2">
 				{
-					props.sponsors.map(sponsor => (<>
-						<div className="h-40 relative">
+					props.sponsors.map((sponsor, index) => (<>
+						<div className="h-40 relative" key={index}>
 							<Image src={sponsor.logo.publicUrl} alt={sponsor.name} layout="fill" objectFit='contain' />
 						</div>
 					</>))
