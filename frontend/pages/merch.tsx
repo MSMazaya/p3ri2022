@@ -13,9 +13,9 @@ type Props = {
 
 const Merch = (props: Props) => {
 	return (
-		<>
+		<React.Fragment>
 			<Head>
-				<title>Merchandise</title>
+				<title>P3RI Salman ITB | Merchandise</title>
 				<meta name="description" content="Beli merchandise yang akan menemani kegiatan Ramadhan anda dari P3RI Official Merch Store" />
 			</Head>
 			<div className="mt-32 flex flex-col gap-20">
@@ -23,7 +23,7 @@ const Merch = (props: Props) => {
 				<Products merches={props.merches} />
 				<Quote />
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 

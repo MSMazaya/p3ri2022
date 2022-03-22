@@ -31,9 +31,9 @@ const Dokumentasi = (props: Props) => {
 	return (
 		<SimpleReactLightbox>
 			<div className="p-12 mb-20">
-				<div className="title-2 bold text-neutral-900 text-center mb-10">
+				<h2 className="title-2 bold text-neutral-900 text-center mb-10">
 					Dokumentasi P3RI
-				</div>
+				</h2>
 				<SRLWrapper>
 					<Carousel
 						swipeable={false}

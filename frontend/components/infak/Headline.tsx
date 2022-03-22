@@ -12,9 +12,9 @@ const Headline = () => {
 				<HeadlineCounterCard />
 			</div>
 			<div className="flex flex-col justify-center m-5">
-				<div className="mid-title bold text-neutral-1000 mb-5">
+				<h1 className="mid-title bold text-neutral-1000 mb-5">
 					Bersama, Bermanfaat
-				</div>
+				</h1>
 				<div className="title-3 medium text-neutral-800 mb-10">
 					Infak yang anda berikan berdampak besar bagi penerimanya. Mari ikut tebarkan semangat bermanfaat bersama P3RI.
 				</div>

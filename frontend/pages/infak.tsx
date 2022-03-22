@@ -6,9 +6,9 @@ import Head from 'next/head'
 
 const Infak = () => {
 	return (
-		<>
+		<React.Fragment>
 			<Head>
-				<title>Infak</title>
+				<title>P3RI Salman ITB | Infak</title>
 				<meta name="description" content="Infak yang anda berikan berdampak besar bagi penerimanya. Mari ikut tebarkan semangat bermanfaat bersama P3RI." />
 			</Head>
 			<div className="m-5 flex flex-col gap-32 mt-32">
@@ -16,7 +16,7 @@ const Infak = () => {
 				<Misc />
 				<InfakQRSection />
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 

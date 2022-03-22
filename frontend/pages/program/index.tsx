@@ -1,4 +1,5 @@
 import { DocumentRenderer } from '@keystone-6/document-renderer';
+import Head from 'next/head';
 import Link from 'next/link';
 import React, { ReactNode } from 'react'
 import { getAllPrograms } from 'services/program'
@@ -11,14 +12,17 @@ type Props = {
 
 const Index = (props: Props) => {
 	return (
-		<>
-			<div className="bold mid-title text-center mt-32">Program P3RI</div>
+		<React.Fragment>
+			<Head>
+				<title>P3RI Salman ITB | Program</title>
+			</Head>
+			<h1 className="bold mid-title text-center mt-32">Program P3RI</h1>
 			<div className="m-10 grid grid-cols-3">
 				{
 					props.programs.map((program, index) => <ProgramCard program={program} key={index} />)
 				}
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 

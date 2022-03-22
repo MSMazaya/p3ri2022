@@ -4,6 +4,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from '@fullcalendar/daygrid';
 import moment from 'moment';
 import { Event } from "types/jadwal";
+import React from "react";
 
 type Props = {
 	events: Event[];
@@ -42,13 +43,13 @@ function RenderEventContent(eventInfo) {
 		<div className="flex gap-2 cursor-pointer" onClick={eventInfo.event.extendedProps.openModal}>
 			{
 				isEventOneDay(eventInfo.event.start, eventInfo.event.end) ?
-					<>
+					<React.Fragment>
 						<div className={`w-[4px] rounded-lg`} style={{ backgroundColor: eventInfo.event.backgroundColor }} />
 						<div>
 							<b>{moment(eventInfo.event.start).format('h:mm a')}-{moment(eventInfo.event.end).format('h:mm a')}</b>
 							<div>{eventInfo.event.title}</div>
 						</div>
-					</>
+					</React.Fragment>
 					:
 					<div>
 						<b>{eventInfo.event.title}</b>

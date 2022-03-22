@@ -9,9 +9,9 @@ type Props = {
 const OtherVideos = (props: Props) => {
 	return (
 		<div className="flex flex-col gap-2">
-			<div className="headline bold text-neutral-1000">
+			<h2 className="headline bold text-neutral-1000">
 				Video Lainnya
-			</div>
+			</h2>
 			{
 				props.videos.map((video, index) => {
 					return <VideoCard video={video} key={index} />

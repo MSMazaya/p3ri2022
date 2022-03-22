@@ -10,7 +10,7 @@ type Props = {
 const Faq = (props: Props) => {
 	return (
 		<div className="p-5 mt-10">
-			<div className="mid-title bold text-neutral-1000 text-center p-5">F.A.Q</div>
+			<h2 className="mid-title bold text-neutral-1000 text-center p-5">F.A.Q</h2>
 			<div className="border-[1px] border-neutral-200 rounded-xl overflow-hidden">
 				{
 					props.faqs.map((faq, index) => <Accordion question={faq.question} answer={faq.answer} key={index} />)

@@ -20,7 +20,7 @@ const Merch = (props: Props) => {
 				}
 			</div>
 			<div className="flex flex-col justify-around m-5">
-				<div className="mid-title text-neutral-1000 bold">Merchandise P3RI</div>
+				<h2 className="mid-title text-neutral-1000 bold">Merchandise P3RI</h2>
 				<div className="title-3 neutral-800 medium">
 					Ikut sukseskan keberjalanan P3RI dengan membeli merchandise dan produk kami. Setiap merchandise dibuat dengan semangat untuk memberikan yang terbaik bagi jamaah.
 				</div>

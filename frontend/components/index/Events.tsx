@@ -38,12 +38,12 @@ const Events = (props: Props) => {
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			<div className={props.events.length ? "p-10 grid grid-cols-1 md:grid-cols-2 relative my-10" : "p-10 my-10 flex items-center justify-center relative"}>
 				<div className={props.events.length ? "flex flex-col gap-10 m-10" : "flex flex-col gap-10 m-10 items-center text-center"}>
-					<div className="mid-title bold text-neutral-1000">
+					<h2 className="mid-title bold text-neutral-1000">
 						Banyak kegiatan yang kami buat, spesial untuk Anda
-					</div>
+					</h2>
 					<div className="text-neutral-800 title-3 font-medium">
 						Event-event webinar, kajian, buka bersama dan banyak lagi lainnya kami buat untuk pengalaman di bulan Ramadhan dan Idul Adha yang terbaik untuk kita semua. InsyaAllah
 					</div>
@@ -65,13 +65,13 @@ const Events = (props: Props) => {
 					events={props.events}
 				/>
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 
 function DesktopCarousel(props) {
 	return (
-		<>
+		<React.Fragment>
 			<div className="overflow-x-scroll no-scrollbar" ref={props.scrollRef}>
 				<div className="w-fit overflow-x-hidden flex gap-3 pb-4">
 					{props.events.map((event, index) => <>
@@ -95,7 +95,7 @@ function DesktopCarousel(props) {
 				}
 			`}
 			</style>
-		</>
+		</React.Fragment>
 	);
 }
 

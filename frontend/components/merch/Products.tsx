@@ -9,9 +9,9 @@ type Props = {
 const Products = (props: Props) => {
 	return (
 		<div className="m-16">
-			<div className="mid-title bold text-center p-5 text-neutral-1000">
+			<h2 className="mid-title bold text-center p-5 text-neutral-1000">
 				Our Products
-			</div>
+			</h2>
 			<div className="grid grid-cols-3 gap-10 w-full">
 				{props.merches.map((merch: Merch, index) => (
 					<ProductItem merch={merch} key={index} />

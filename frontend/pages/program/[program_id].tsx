@@ -8,78 +8,24 @@ import moment from 'moment';
 import { BiArrowBack } from 'react-icons/bi';
 import { BlogCard } from 'components/blog/BlogCard';
 import Link from 'next/link';
+import Head from 'next/head';
 
 type Props = {
 	program: Program;
 }
 
 const Program = (props: Props) => {
-	const items = [
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-		{
-			title: "May 1940",
-			cardTitle: "Dunkirk",
-			url: "http://www.history.com",
-			cardSubtitle: "Men of the British Expeditionary Force (BEF) wade out to..",
-			cardDetailedText: "Men of the British Expeditionary Force (BEF) wade out to..",
-		},
-	];
 
 	return (
-		<>
+		<React.Fragment>
+			<Head>
+				<title>P3RI Salman ITB | {props.program.namaProgram}</title>
+			</Head>
 			<div className="px-5">
 				<div className="py-32 h-screen flex flex-col justify-center gap-10">
 					<div className="grid grid-cols-2 gap-10 m-10">
 						<div className="p-5 flex flex-col gap-10">
-							<div className="bold mid-title">{props.program.namaProgram}</div>
+							<h1 className="bold mid-title">{props.program.namaProgram}</h1>
 							<div className="text-justify">
 								<DocumentRenderer document={props.program.deskripsiProgram.document} />
 							</div>
@@ -134,7 +80,7 @@ const Program = (props: Props) => {
 					</div>
 				</Link>
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 

@@ -6,9 +6,9 @@ const InfakQRSection = () => {
 	return (
 		<div className="grid grid-cols-2" id="qr">
 			<div className="flex flex-col justify-center m-5">
-				<div className="mid-title bold text-neutral-1000 mb-10">
+				<h2 className="mid-title bold text-neutral-1000 mb-10">
 					Salurkan infak terbaikmu dengan scan QR Code
-				</div>
+				</h2>
 				<div className="title-3 medium text-neutral-800 mb-20">
 					P3RI membantu anda dalam menyalurkan infak, sedekah, dan donasi kepada orang-orang yang membutuhkan.
 				</div>

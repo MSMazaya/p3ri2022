@@ -10,7 +10,7 @@ type Props = {
 const SponsorAndMedpar = (props: Props) => {
 	return (
 		<div className="p-10 text-center flex flex-col gap-4">
-			<div className="title-2 bold text-neutral-1000">Disponsori Oleh</div>
+			<h2 className="title-2 bold text-neutral-1000">Disponsori Oleh</h2>
 			<div className="grid grid-cols-5 gap-2">
 				{
 					props.sponsors.map((sponsor, index) => (<>

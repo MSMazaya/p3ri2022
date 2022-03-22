@@ -13,9 +13,9 @@ const Quote = () => {
 				/>
 			</div> */}
 			<div className="bg-slate-500 rounded-xl w-[80%] h-80 "></div>
-			<div className="text-neutral-1000 title-1 italic flex items-center">
+			<h2 className="text-neutral-1000 title-1 italic flex items-center">
 				Merchandise untuk menemanimu di bulan suci
-			</div>
+			</h2>
 		</div>
 	)
 }

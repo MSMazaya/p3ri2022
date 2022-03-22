@@ -23,6 +23,7 @@ import { getAllPhotoDokumentasi } from 'services/photoDokumentasi'
 import { PhotoDokumentasi } from 'types/photoDokumentasi'
 import Blogs from 'components/index/Blogs'
 import Dokumentasi from 'components/index/Dokumentasi'
+import TahunLaluDiP3RI from 'components/sponsor/TahunLaluDiP3RI'
 
 type Props = {
   faqs: FaqType[];
@@ -37,9 +38,9 @@ type Props = {
 
 const Home: NextPage = (props: Props) => {
   return (
-    <>
+    <React.Fragment>
       <Head>
-        <title>P3RI Salman ITB</title>
+        <title>P3RI Salman ITB | P3RI Salman ITB</title>
         <meta name="description" content="Maksimalkan amal ibadah anda dengan berbagai kegiatan dan materi yang bermanfaat bersama P3RI Salman ITB" />
       </Head>
       <React.Fragment>
@@ -51,14 +52,15 @@ const Home: NextPage = (props: Props) => {
           )
         } />
         <InfakSection />
+        <TahunLaluDiP3RI />
         <Dokumentasi photoDokumentasis={props.photoDokumentasis} />
         <Merch merches={props.merches} />
+        <Faq faqs={props.faqs} />
         <Blogs articles={props.articles} />
         <Tagline />
-        <Faq faqs={props.faqs} />
         <SponsorAndMedpar sponsors={props.sponsors} mediaPartners={props.mediaPartners} />
       </React.Fragment>
-    </>
+    </React.Fragment>
   )
 }
 

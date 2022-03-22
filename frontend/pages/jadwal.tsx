@@ -17,9 +17,9 @@ const Jadwal = (props: Props) => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
 
 	return (
-		<>
+		<React.Fragment>
 			<Head>
-				<title>Jadwal Kegiatan P3RI</title>
+				<title>P3RI Salman ITB | Jadwal Kegiatan P3RI</title>
 				<meta name="description" content="Seluruh jadwal kegiatan offline maupun online dari P3RI Salman ITB" />
 			</Head>
 			<div className="m-5 mt-32">
@@ -31,7 +31,7 @@ const Jadwal = (props: Props) => {
 				</div>
 
 			</div>
-		</>
+		</React.Fragment>
 	)
 }
 

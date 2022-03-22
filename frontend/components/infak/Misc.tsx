@@ -15,7 +15,7 @@ const MiscCard = () => {
 	return (
 		<div className="bg-neutral-100 rounded-xl shadow-xl relative p-3 overflow-hidden w-[20rem] m-2 flex flex-col gap-4">
 			<div className="bg-neutral-900 h-60"></div>
-			<div className="text-neutral-1000 headline bold">Sponsori kegiatan kami</div>
+			<h2 className="text-neutral-1000 headline bold">Sponsori kegiatan kami</h2>
 			<div className="text-neutral-800 body-1 medium">Dengan mensponsori kegiatan kami, perusahaan anda ikut membantu melayani jamaah Salman ITB.</div>
 		</div>
 	)
