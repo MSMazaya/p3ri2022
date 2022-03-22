@@ -1,0 +1,6 @@
+Sitemap: https://p3ri.salmanitb.com/api/sitemap
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*

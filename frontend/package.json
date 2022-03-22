@@ -52,6 +52,7 @@
     "react-transition-group": "^4.4.2",
     "sharp": "^0.30.2",
     "simple-react-lightbox": "^3.6.9-0",
+    "sitemap": "^7.1.1",
     "swr": "^1.2.2"
   },
   "devDependencies": {
