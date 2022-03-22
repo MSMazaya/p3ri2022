@@ -19,7 +19,10 @@ import { getAllSponsorAndMediaPartners } from 'services/sponsorAndMediaPartner'
 import { Article } from 'types/article'
 import { getArticlesPaginated } from 'services/article'
 import { MediaPartner, Sponsor } from 'types/sponsorAndMediaPartner'
+import { getAllPhotoDokumentasi } from 'services/photoDokumentasi'
+import { PhotoDokumentasi } from 'types/photoDokumentasi'
 import Blogs from 'components/index/Blogs'
+import Dokumentasi from 'components/index/Dokumentasi'
 
 type Props = {
   faqs: FaqType[];
@@ -28,6 +31,7 @@ type Props = {
   mediaPartners: MediaPartner[];
   sponsors: Sponsor[];
   articles: Article[];
+  photoDokumentasis: PhotoDokumentasi[];
   children?: ReactNode
 }
 
@@ -47,6 +51,7 @@ const Home: NextPage = (props: Props) => {
           )
         } />
         <InfakSection />
+        <Dokumentasi photoDokumentasis={props.photoDokumentasis} />
         <Merch merches={props.merches} />
         <Blogs articles={props.articles} />
         <Tagline />
@@ -63,6 +68,7 @@ export async function getStaticProps() {
   const merches = await getMerchesPaginated(2, 0);
   const { mediaPartners, sponsors } = await getAllSponsorAndMediaPartners();
   const articles = await getArticlesPaginated(8, 0);
+  const photoDokumentasis = await getAllPhotoDokumentasi();
 
   return {
     props: {
@@ -71,7 +77,8 @@ export async function getStaticProps() {
       merches,
       mediaPartners,
       sponsors,
-      articles
+      articles,
+      photoDokumentasis
     }
   }
 }

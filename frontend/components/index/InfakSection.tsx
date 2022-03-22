@@ -13,7 +13,7 @@ const cardData = [
 
 const InfakSection = () => {
 	return (
-		<div className="p-10 my-32">
+		<div className="p-10 mt-32 mb-10">
 			<div className="text-center text-neutral-1000 mid-title bold">Beramal di Bulan Suci, Bersama P3RI</div>
 			<div className="text-center text-neutral-800 sub-headline medium">P3RI membantu anda dalam menyalurkan infak, sedekah, dan donasi kepada orang-orang yang membutuhkan.</div>
 			<div className="m-5 flex justify-center align center ">
