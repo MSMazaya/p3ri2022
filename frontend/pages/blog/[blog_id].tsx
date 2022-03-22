@@ -2,6 +2,7 @@ import { DocumentRenderer } from '@keystone-6/document-renderer';
 import moment from 'moment';
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 import { getAllArticlesId, getArticleById, getArticlesPaginated } from 'services/article'
 import { Article } from 'types/article'
@@ -17,27 +18,29 @@ type CardProps = {
 
 function BlogCard(props: CardProps) {
 	return (
-		<div className="cursor-pointer">
-			<div className="flex gap-5 items-center caption">
-				<div className="rounded-2xl w-4 h-4 relative">
-					<Image src={props.blog.authorPhoto.publicUrl} layout="fill" objectFit="cover" alt={props.blog.author} />
+		<Link passHref href={`/blog/${props.blog.id}`}>
+			<div className="cursor-pointer">
+				<div className="flex gap-5 items-center caption">
+					<div className="rounded-2xl w-4 h-4 relative">
+						<Image src={props.blog.authorPhoto.publicUrl} layout="fill" objectFit="cover" alt={props.blog.author} />
+					</div>
+					<div className="text-neutral-1000 bold">
+						{props.blog.author}
+					</div>
+					<div className="w-[2px] h-[1rem] my-auto bg-neutral-400" />
+					<div className="text-neutral-600 body-1 font-medium">
+						{moment(props.blog.publishedAt).format('LL')}
+					</div>
+					<div className="w-[2px] h-[1rem] my-auto bg-neutral-400" />
+					<div className="text-neutral-600 ">
+						{`${props.blog.minutesToRead} min read`}
+					</div>
 				</div>
-				<div className="text-neutral-1000 bold">
-					{props.blog.author}
-				</div>
-				<div className="w-[2px] h-[1rem] my-auto bg-neutral-400" />
-				<div className="text-neutral-600 body-1 font-medium">
-					{moment(props.blog.publishedAt).format('LL')}
-				</div>
-				<div className="w-[2px] h-[1rem] my-auto bg-neutral-400" />
-				<div className="text-neutral-600 ">
-					{`${props.blog.minutesToRead} min read`}
+				<div className="sub-headline bold mt-2">
+					{props.blog.title}
 				</div>
 			</div>
-			<div className="sub-headline bold mt-2">
-				{props.blog.title}
-			</div>
-		</div>
+		</Link>
 	);
 }
 
