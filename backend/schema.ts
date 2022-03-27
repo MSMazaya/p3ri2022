@@ -203,6 +203,30 @@ export const lists: Lists = {
         many: true,
       }),
     },
+    hooks: {
+      afterOperation: async ({ item }) => {
+        const validateUrl = process.env.VALIDATE_URL as string;
+        const secret = process.env.SECRET_REVALIDATE_TOKEN;
+        await axios.get(validateUrl, {
+          params: {
+            path: "/",
+            secret,
+          },
+        });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/program",
+            secret,
+          },
+        });
+        await axios.get(validateUrl, {
+          params: {
+            path: `/program/${item!.id}`,
+            secret,
+          },
+        });
+      },
+    },
   }),
 
   Article: list({
@@ -250,6 +274,12 @@ export const lists: Lists = {
             secret,
           },
         });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/sponsor",
+            secret,
+          },
+        });
       },
     },
   }),
@@ -273,6 +303,12 @@ export const lists: Lists = {
         await axios.get(validateUrl, {
           params: {
             path: "/",
+            secret,
+          },
+        });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/sponsor",
             secret,
           },
         });
@@ -302,6 +338,12 @@ export const lists: Lists = {
             secret,
           },
         });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/sponsor",
+            secret,
+          },
+        });
       },
     },
   }),
@@ -325,6 +367,12 @@ export const lists: Lists = {
         await axios.get(validateUrl, {
           params: {
             path: "/",
+            secret,
+          },
+        });
+        await axios.get(validateUrl, {
+          params: {
+            path: "/sponsor",
             secret,
           },
         });
